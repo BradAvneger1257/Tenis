@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Carrito</title>
+
+<style>
+
+body{
+    font-family: Arial;
+    background:#111;
+    color:white;
+    text-align:center;
+}
+
+.producto{
+    background:#222;
+    margin:20px auto;
+    padding:20px;
+    width:250px;
+    border-radius:10px;
+}
+
+img{
+    width:200px;
+}
+
+button{
+    margin-top:10px;
+    padding:8px 15px;
+    background:red;
+    border:none;
+    color:white;
+    cursor:pointer;
+}
+a{
+    color:white;
+    margin-left:15px;
+    text-decoration:none;
+}
+
+</style>
+
+</head>
+<body>
+
+<h1>Carrito</h1>
+
+<a href="bradley.html"> Seguir comprando</a>
+
+<div id="carrito"></div>
+
+<script>
+
+let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+const contenedor = document.getElementById("carrito");
+
+function mostrarCarrito(){
+
+contenedor.innerHTML="";
+
+carrito.forEach((producto,index)=>{
+
+contenedor.innerHTML += `
+
+<div class="producto">
+
+<img src="${producto.img}">
+
+<h3>${producto.nombre}</h3>
+
+<button onclick="eliminar(${index})">Eliminar</button>
+
+</div>
+
+`;
+
+});
+
+}
+
+function eliminar(index){
+
+carrito.splice(index,1);
+
+localStorage.setItem("carrito",JSON.stringify(carrito));
+
+mostrarCarrito();
+
+}
+
+mostrarCarrito();
+
+</script>
+
+</body>
+</html>
