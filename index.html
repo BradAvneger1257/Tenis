@@ -3,132 +3,305 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Inicio</title>
+<title>Tienda Sneakers</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<!-- ICONOS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
 }
 
-body {
-    font-family: Arial, sans-serif;
-    background: #111;
-    color: white;
+body{
+font-family:'Poppins',sans-serif;
+background:#0f0f0f;
+color:white;
 }
 
-header {
-    text-align: center;
-    padding: 2rem;
-    background: #1a1a1a;
+/* NAVBAR */
+
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 50px;
+background:#111;
+border-bottom:1px solid #222;
 }
 
-/* Contenedor scroll */
-.scroll-container {
-    overflow-x: auto;
-    white-space: nowrap;
-    padding: 2rem;
-    scroll-behavior: smooth;
+.logo{
+font-size:24px;
+font-weight:700;
+color:#00c853;
 }
 
-/* Scroll personalizado */
-.scroll-container::-webkit-scrollbar {
-    height: 10px;
+nav a{
+margin-left:30px;
+text-decoration:none;
+color:white;
+font-weight:500;
+transition:.3s;
 }
 
-.scroll-container::-webkit-scrollbar-thumb {
-    background: #00c853;
-    border-radius: 10px;
+nav a:hover{
+color:#00c853;
 }
 
-.scroll-container::-webkit-scrollbar-track {
-    background: #333;
+/* HERO */
+
+.hero{
+height:400px;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
+url("img/banner.jpg");
+background-size:cover;
+background-position:center;
 }
 
-/* Tarjetas */
-.marca-card {
-    display: inline-block;
-    background: #1e1e1e;
-    margin-right: 20px;
-    border-radius: 10px;
-    width: 250px;
-    text-align: center;
-    transition: 0.3s;
+.hero h1{
+font-size:48px;
+margin-bottom:10px;
 }
 
-.marca-card img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    border-radius: 10px 10px 0 0;
+.hero p{
+font-size:18px;
+opacity:.8;
 }
 
-.marca-card h2 {
-    padding: 1rem;
+.btn{
+margin-top:20px;
+padding:12px 25px;
+background:#00c853;
+border:none;
+border-radius:5px;
+color:white;
+font-weight:500;
+cursor:pointer;
+transition:.3s;
+text-decoration:none;
 }
 
-.marca-card:hover {
-    transform: scale(1.05);
+.btn:hover{
+background:#00a844;
 }
+
+/* TITULOS */
+
+.section-title{
+text-align:center;
+margin:50px 0 20px 0;
+font-size:30px;
+}
+
+/* SCROLL MARCAS */
+
+.scroll-container{
+overflow-x:auto;
+white-space:nowrap;
+padding:30px;
+scroll-behavior:smooth;
+}
+
+.scroll-container::-webkit-scrollbar{
+height:8px;
+}
+
+.scroll-container::-webkit-scrollbar-thumb{
+background:#00c853;
+border-radius:10px;
+}
+
+/* CARDS */
+
+.marca-card{
+display:inline-block;
+background:#1a1a1a;
+margin-right:20px;
+border-radius:10px;
+width:240px;
+transition:.3s;
+cursor:pointer;
+}
+
+.marca-card img{
+width:100%;
+height:160px;
+object-fit:cover;
+border-radius:10px 10px 0 0;
+}
+
+.marca-card h2{
+padding:15px;
+text-align:center;
+}
+
+.marca-card:hover{
+transform:translateY(-5px);
+box-shadow:0 10px 20px rgba(0,0,0,.6);
+}
+
+/* FOOTER */
+
+footer{
+margin-top:50px;
+background:#111;
+padding:40px 20px;
+text-align:center;
+}
+
+/* NEWSLETTER */
+
+.newsletter{
+margin-bottom:25px;
+}
+
+.newsletter h3{
+margin-bottom:10px;
+}
+
+.newsletter input{
+padding:10px;
+border:none;
+border-radius:5px;
+width:220px;
+margin-right:10px;
+}
+
+.newsletter button{
+padding:10px 15px;
+border:none;
+border-radius:5px;
+background:#00c853;
+color:white;
+cursor:pointer;
+}
+
+/* REDES */
+
+.redes{
+margin-top:20px;
+}
+
+.redes a{
+color:white;
+margin:0 12px;
+font-size:22px;
+transition:.3s;
+}
+
+.redes a:hover{
+color:#00c853;
+}
+
+/* COPYRIGHT */
+
+.copy{
+margin-top:20px;
+font-size:14px;
+color:#aaa;
+}
+
 </style>
 </head>
 
 <body>
 
-<header class="menu">
-    <div class="logo">LOGO</div>
-    <h1>Marcas Disponibles</h1>
-    <nav class="nav">
-        <a href="#" class="bradley.html">Nuevo</a>
-        <a href="Ruben.html">Hombre</a>
-        <a href="alan.html">Mujer</a>
-    </nav>
+<header>
+
+<div class="logo">SneakerStore</div>
+
+<nav>
+<a href="#">Inicio</a>
+<a href="#">Marcas</a>
+<a href="#">Ofertas</a>
+<a href="#">Contacto</a>
+</nav>
+
 </header>
 
-<section class="scroll-container">
 
-    <div class="marca-card">
-        <img src="img/nike.png" alt="Nike">
-        <h2>Nike</h2>
-    </div>
+<section class="hero">
 
-    <div class="marca-card">
-        <img src="img/adidas.png" alt="Adidas">
-        <h2>Adidas</h2>
-    </div>
+<h1>Las Mejores Marcas</h1>
+<p>Encuentra los sneakers más populares del momento</p>
 
-    <div class="marca-card">
-        <img src="img/puma.png" alt="Puma">
-        <h2>Puma</h2>
-    </div>
-
-    <div class="marca-card">
-        <img src="img/newbalance.png" alt="New Balance">
-        <h2>New Balance</h2>
-    </div>
-
-    <div class="marca-card">
-        <img src="img/reebok.png" alt="Reebok">
-        <h2>Reebok</h2>
-    </div>
-
-    <div class="marca-card">
-        <img src="img/asics.png" alt="Asics">
-        <h2>Asics</h2>
-    </div>
+<a href="bradley.html" class="btn">Ver colección</a>
 
 </section>
 
 
+<h2 class="section-title">Marcas disponibles</h2>
 
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Tienda</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+<section class="scroll-container">
+
+<div class="marca-card">
+<img src="img/nike.png">
+<h2>Nike</h2>
+</div>
+
+<div class="marca-card">
+<img src="img/adidas.png">
+<h2>Adidas</h2>
+</div>
+
+<div class="marca-card">
+<img src="img/puma.png">
+<h2>Puma</h2>
+</div>
+
+<div class="marca-card">
+<img src="img/newbalance.png">
+<h2>New Balance</h2>
+</div>
+
+<div class="marca-card">
+<img src="img/reebok.png">
+<h2>Reebok</h2>
+</div>
+
+<div class="marca-card">
+<img src="img/asics.png">
+<h2>Asics</h2>
+</div>
+
+</section>
+
+
+<footer>
+
+<div class="newsletter">
+
+<h3>Suscríbete a nuestro newsletter</h3>
+
+<input type="email" placeholder="Tu correo">
+<button>Suscribirse</button>
+
+</div>
+
+<div class="redes">
+
+<a href="#"><i class="fab fa-instagram"></i></a>
+<a href="#"><i class="fab fa-facebook"></i></a>
+<a href="#"><i class="fab fa-twitter"></i></a>
+<a href="#"><i class="fab fa-youtube"></i></a>
+
+</div>
+
+<p class="copy">
+© 2026 SneakerStore - Todos los derechos reservados
+</p>
+
+</footer>
 
 </body>
 </html>
