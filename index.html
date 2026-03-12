@@ -3,11 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tienda Sneakers</title>
+<title>SneakerStore</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
-<!-- ICONOS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
@@ -33,16 +32,6 @@ align-items:center;
 padding:20px 50px;
 background:#111;
 border-bottom:1px solid #222;
-
-nav a{
-    color:white;
-    margin-left:15px;
-    text-decoration:none;
-}
-header {
-    text-align: center;
-    padding: 2rem;
-    background: #1a1a1a;
 }
 
 .logo{
@@ -52,7 +41,7 @@ color:#00c853;
 }
 
 nav a{
-margin-left:30px;
+margin-left:25px;
 text-decoration:none;
 color:white;
 font-weight:500;
@@ -63,10 +52,14 @@ nav a:hover{
 color:#00c853;
 }
 
+.carrito{
+font-size:20px;
+}
+
 /* HERO */
 
 .hero{
-height:400px;
+height:420px;
 display:flex;
 flex-direction:column;
 justify-content:center;
@@ -79,7 +72,7 @@ background-position:center;
 }
 
 .hero h1{
-font-size:48px;
+font-size:50px;
 margin-bottom:10px;
 }
 
@@ -109,29 +102,17 @@ background:#00a844;
 
 .section-title{
 text-align:center;
-margin:50px 0 20px 0;
-font-size:30px;
+margin:60px 0 25px 0;
+font-size:32px;
 }
 
-/* SCROLL MARCAS */
+/* MARCAS */
 
 .scroll-container{
 overflow-x:auto;
 white-space:nowrap;
 padding:30px;
-scroll-behavior:smooth;
 }
-
-.scroll-container::-webkit-scrollbar{
-height:8px;
-}
-
-.scroll-container::-webkit-scrollbar-thumb{
-background:#00c853;
-border-radius:10px;
-}
-
-/* CARDS */
 
 .marca-card{
 display:inline-block;
@@ -160,10 +141,51 @@ transform:translateY(-5px);
 box-shadow:0 10px 20px rgba(0,0,0,.6);
 }
 
+/* CONTACTO */
+
+.contacto{
+padding:60px;
+text-align:center;
+max-width:900px;
+margin:auto;
+}
+
+.contacto p{
+margin-top:15px;
+line-height:1.6;
+opacity:.8;
+}
+
+/* COMENTARIOS */
+
+.comentarios{
+padding:50px;
+background:#151515;
+text-align:center;
+}
+
+.form-comentario{
+margin-top:20px;
+}
+
+.form-comentario input,
+.form-comentario textarea{
+width:300px;
+padding:10px;
+margin:8px;
+border:none;
+border-radius:5px;
+}
+
+.form-comentario textarea{
+height:100px;
+resize:none;
+}
+
 /* FOOTER */
 
 footer{
-margin-top:50px;
+margin-top:40px;
 background:#111;
 padding:40px 20px;
 text-align:center;
@@ -172,11 +194,16 @@ text-align:center;
 /* NEWSLETTER */
 
 .newsletter{
-margin-bottom:25px;
+margin-bottom:30px;
 }
 
 .newsletter h3{
 margin-bottom:10px;
+}
+
+.newsletter p{
+opacity:.7;
+margin-bottom:15px;
 }
 
 .newsletter input{
@@ -220,6 +247,7 @@ margin-top:20px;
 font-size:14px;
 color:#aaa;
 }
+
 </style>
 </head>
 
@@ -230,35 +258,31 @@ color:#aaa;
 <div class="logo">SneakerStore</div>
 
 <nav>
-<a href="#">Inicio</a>
-<a href="#">Marcas</a>
-<a href="#">Ofertas</a>
-<a href="#">Contacto</a>
+
+<a href="bradley.html">Productos</a>
+<a href="#marcas">Marcas</a>
+<a href="#contacto">Contactanos</a>
+
+<a href="carrito.html" class="carrito">
+<i class="fa-solid fa-cart-shopping"></i>
+</a>
+
 </nav>
 
-
-<header class="menu">
-    <div class="logo">LOGO</div>
-    <h1>Marcas Disponibles</h1>
-
-    <nav class="nav">
-        <a href="bradley.html">Nuevo</a>
-        <a href="carrito.html">Carrito</a>
-    </nav>
 </header>
 
 
 <section class="hero">
 
-<h1>Las Mejores Marcas</h1>
-<p>Encuentra los sneakers más populares del momento</p>
+<h1>Los Sneakers Más Deseados</h1>
+<p>Explora nuestra colección de zapatillas exclusivas</p>
 
 <a href="bradley.html" class="btn">Ver colección</a>
 
 </section>
 
 
-<h2 class="section-title">Marcas disponibles</h2>
+<h2 id="marcas" class="section-title">Marcas disponibles</h2>
 
 <section class="scroll-container">
 
@@ -295,11 +319,56 @@ color:#aaa;
 </section>
 
 
+<section id="contacto" class="contacto">
+
+<h2 class="section-title">Contáctanos</h2>
+
+<p>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+Suspendisse potenti. Sed feugiat ligula vel justo facilisis,
+a gravida neque malesuada. Nuestro equipo está disponible
+para ayudarte con cualquier duda sobre nuestros productos,
+envíos o devoluciones.
+</p>
+
+<p>
+Email: contacto@sneakerstore.com  
+<br>
+Tel: +52 871 000 0000
+</p>
+
+</section>
+
+
+<section class="comentarios">
+
+<h2 class="section-title">Déjanos tu comentario</h2>
+
+<form class="form-comentario">
+
+<input type="email" placeholder="Tu correo" required>
+<br>
+
+<textarea placeholder="Escribe tu comentario"></textarea>
+<br>
+
+<button class="btn">Enviar comentario</button>
+
+</form>
+
+</section>
+
+
 <footer>
 
 <div class="newsletter">
 
-<h3>Suscríbete a nuestro newsletter</h3>
+<h3>Suscríbete</h3>
+
+<p>
+Recibe ofertas exclusivas, lanzamientos de sneakers
+y descuentos especiales directamente en tu correo.
+</p>
 
 <input type="email" placeholder="Tu correo">
 <button>Suscribirse</button>

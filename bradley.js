@@ -1,58 +1,79 @@
 const botones = document.querySelectorAll(".filtro-btn");
 const cards = document.querySelectorAll(".card");
 
-/* FILTRO DE MARCAS */
-
 botones.forEach(boton => {
-    boton.addEventListener("click", () => {
 
-        botones.forEach(btn => btn.classList.remove("active"));
-        boton.classList.add("active");
+boton.addEventListener("click",()=>{
 
-        const marca = boton.getAttribute("data-marca");
+botones.forEach(btn=>btn.classList.remove("active"));
 
-        cards.forEach(card => {
+boton.classList.add("active");
 
-            if (marca === "todos") {
-                card.style.display = "block";
-            } 
-            else {
+const marca = boton.getAttribute("data-marca");
 
-                card.style.display =
-                card.getAttribute("data-marca") === marca
-                ? "block"
-                : "none";
+cards.forEach(card=>{
 
-            }
+if(marca==="todos"){
 
-        });
-    });
+card.style.display="block";
+
+}else{
+
+card.style.display =
+card.getAttribute("data-marca")===marca
+? "block"
+: "none";
+
+}
+
 });
 
+});
 
-/* CARRITO */
+});
+
 
 const botonesCarrito = document.querySelectorAll(".btn-carrito");
 
-botonesCarrito.forEach(boton => {
+botonesCarrito.forEach(btn=>{
 
-    boton.addEventListener("click", () => {
+btn.addEventListener("click",()=>{
 
-        const producto = {
+let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
-            nombre: boton.dataset.nombre,
-            img: boton.dataset.img
+const producto = {
 
-        };
+nombre:btn.dataset.nombre,
+precio:parseInt(btn.dataset.precio),
+img:btn.dataset.img
 
-        let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+};
 
-        carrito.push(producto);
+carrito.push(producto);
 
-        localStorage.setItem("carrito", JSON.stringify(carrito));
+localStorage.setItem("carrito",JSON.stringify(carrito));
 
-        alert("Producto agregado al carrito");
+actualizarContador();
 
-    });
+alert("Producto agregado al carrito");
 
 });
+
+});
+
+
+function actualizarContador(){
+
+let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+const contador = document.getElementById("contador-carrito");
+
+if(contador){
+
+contador.textContent = carrito.length;
+
+}
+
+}
+
+actualizarContador();

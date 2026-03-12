@@ -5,219 +5,177 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Productos</title>
+<title>Novedades</title>
 
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="bradley.css">
 
-<style>
-
-body{
-    font-family: Arial;
-    margin:0;
-    background:#111;
-    color:white;
-}
-
-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:20px;
-    background:#000;
-}
-
-nav a{
-    color:white;
-    margin-left:15px;
-    text-decoration:none;
-}
-
-.filtros{
-    text-align:center;
-    margin:20px;
-}
-
-.filtros button{
-    margin:5px;
-    padding:10px 20px;
-    border:none;
-    cursor:pointer;
-}
-
-.productos{
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:center;
-    gap:20px;
-}
-
-.card{
-    background:#222;
-    padding:20px;
-    border-radius:10px;
-    width:250px;
-    text-align:center;
-}
-
-.card img{
-    width:200px;
-}
-
-.btn-carrito{
-    margin-top:10px;
-    padding:10px;
-    border:none;
-    background:#28a745;
-    color:white;
-    cursor:pointer;
-    border-radius:5px;
-}
-
-</style>
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 </head>
 
 <body>
 
-<header>
+<header class="header">
 
-<h1>Tenis</h1>
+<div class="nav-icons">
 
-<nav>
-<a href="index.html">Inicio</a>
-<a href="carrito.html">Carrito</a>
-</nav>
+<a href="index.html">
+<i class="fa-solid fa-arrow-left"></i>
+</a>
+
+<a href="carrito.html" class="carrito-icono">
+<i class="fa-solid fa-cart-shopping"></i>
+<span id="contador-carrito">0</span>
+</a>
+
+</div>
+
+<h1>Novedades en Tenis</h1>
 
 </header>
 
 
 <!-- FILTROS -->
 
-<div class="filtros">
+<section class="filtros">
 
-<button class="filtro-btn" data-marca="todos">Todos</button>
+<button class="filtro-btn active" data-marca="todos">Todos</button>
 <button class="filtro-btn" data-marca="nike">Nike</button>
 <button class="filtro-btn" data-marca="adidas">Adidas</button>
 <button class="filtro-btn" data-marca="puma">Puma</button>
+<button class="filtro-btn" data-marca="newbalance">New Balance</button>
+<button class="filtro-btn" data-marca="reebok">Reebok</button>
+<button class="filtro-btn" data-marca="asics">Asics</button>
 
-</div>
+</section>
 
 
-<!-- PRODUCTOS -->
-
-<div class="productos">
-
+<main class="contenedor">
 
 <!-- NIKE -->
 
 <div class="card" data-marca="nike">
-
-<img src="img/nike1.jpg" alt="Nike Air Zoom">
-
-<h3>Nike Air Zoom</h3>
-
-<button class="btn-carrito"
-data-nombre="Nike Air Zoom"
-data-img="img/nike1.jpg">
-
-Agregar al carrito
-
-</button>
-
+<img src="img/nike1.jpg">
+<h2>Nike Air Zoom</h2>
+<p class="precio">$2499</p>
+<button class="btn-carrito" data-nombre="Nike Air Zoom" data-precio="2499" data-img="img/nike1.jpg">Agregar al carrito</button>
 </div>
 
+<div class="card" data-marca="nike">
+<img src="img/nike2.jpg">
+<h2>Nike Air Max 270</h2>
+<p class="precio">$2999</p>
+<button class="btn-carrito" data-nombre="Nike Air Max 270" data-precio="2999" data-img="img/nike2.jpg">Agregar al carrito</button>
+</div>
 
 <div class="card" data-marca="nike">
-
-<img src="img/nike2.jpg" alt="Nike Revolution">
-
-<h3>Nike Revolution</h3>
-
-<button class="btn-carrito"
-data-nombre="Nike Revolution"
-data-img="img/nike2.jpg">
-
-Agregar al carrito
-
-</button>
-
+<img src="img/nike3.jpg">
+<h2>Nike Revolution 6</h2>
+<p class="precio">$1799</p>
+<button class="btn-carrito" data-nombre="Nike Revolution 6" data-precio="1799" data-img="img/nike3.jpg">Agregar al carrito</button>
 </div>
 
 
 <!-- ADIDAS -->
 
 <div class="card" data-marca="adidas">
-
-<img src="img/adidas1.jpg" alt="Adidas Ultraboost">
-
-<h3>Adidas Ultraboost</h3>
-
-<button class="btn-carrito"
-data-nombre="Adidas Ultraboost"
-data-img="img/adidas1.jpg">
-
-Agregar al carrito
-
-</button>
-
+<img src="img/adidas1.jpg">
+<h2>Adidas Ultraboost</h2>
+<p class="precio">$3199</p>
+<button class="btn-carrito" data-nombre="Adidas Ultraboost" data-precio="3199" data-img="img/adidas1.jpg">Agregar al carrito</button>
 </div>
 
+<div class="card" data-marca="adidas">
+<img src="img/adidas2.jpg">
+<h2>Adidas NMD R1</h2>
+<p class="precio">$2799</p>
+<button class="btn-carrito" data-nombre="Adidas NMD R1" data-precio="2799" data-img="img/adidas2.jpg">Agregar al carrito</button>
+</div>
 
 <div class="card" data-marca="adidas">
-
-<img src="img/adidas2.jpg" alt="Adidas Runfalcon">
-
-<h3>Adidas Runfalcon</h3>
-
-<button class="btn-carrito"
-data-nombre="Adidas Runfalcon"
-data-img="img/adidas2.jpg">
-
-Agregar al carrito
-
-</button>
-
+<img src="img/adidas3.jpg">
+<h2>Adidas Superstar</h2>
+<p class="precio">$2199</p>
+<button class="btn-carrito" data-nombre="Adidas Superstar" data-precio="2199" data-img="img/adidas3.jpg">Agregar al carrito</button>
 </div>
 
 
 <!-- PUMA -->
 
 <div class="card" data-marca="puma">
-
-<img src="img/puma1.jpg" alt="Puma RS-X">
-
-<h3>Puma RS-X</h3>
-
-<button class="btn-carrito"
-data-nombre="Puma RS-X"
-data-img="img/puma1.jpg">
-
-Agregar al carrito
-
-</button>
-
+<img src="img/puma1.jpg">
+<h2>Puma RS-X</h2>
+<p class="precio">$2099</p>
+<button class="btn-carrito" data-nombre="Puma RS-X" data-precio="2099" data-img="img/puma1.jpg">Agregar al carrito</button>
 </div>
-
 
 <div class="card" data-marca="puma">
+<img src="img/puma2.jpg">
+<h2>Puma Future Rider</h2>
+<p class="precio">$2299</p>
+<button class="btn-carrito" data-nombre="Puma Future Rider" data-precio="2299" data-img="img/puma2.jpg">Agregar al carrito</button>
+</div>
 
-<img src="img/puma2.jpg" alt="Puma Smash">
-
-<h3>Puma Smash</h3>
-
-<button class="btn-carrito"
-data-nombre="Puma Smash"
-data-img="img/puma2.jpg">
-
-Agregar al carrito
-
-</button>
-
+<div class="card" data-marca="puma">
+<img src="img/puma3.jpg">
+<h2>Puma Cali Sport</h2>
+<p class="precio">$1999</p>
+<button class="btn-carrito" data-nombre="Puma Cali Sport" data-precio="1999" data-img="img/puma3.jpg">Agregar al carrito</button>
 </div>
 
 
+<!-- NEW BALANCE -->
+
+<div class="card" data-marca="newbalance">
+<img src="img/newbalance1.jpg">
+<h2>New Balance 574</h2>
+<p class="precio">$2199</p>
+<button class="btn-carrito" data-nombre="New Balance 574" data-precio="2199" data-img="img/newbalance1.jpg">Agregar al carrito</button>
 </div>
 
+<div class="card" data-marca="newbalance">
+<img src="img/newbalance2.jpg">
+<h2>New Balance 990</h2>
+<p class="precio">$2999</p>
+<button class="btn-carrito" data-nombre="New Balance 990" data-precio="2999" data-img="img/newbalance2.jpg">Agregar al carrito</button>
+</div>
+
+
+<!-- REEBOK -->
+
+<div class="card" data-marca="reebok">
+<img src="img/reebok1.jpg">
+<h2>Reebok Classic</h2>
+<p class="precio">$1899</p>
+<button class="btn-carrito" data-nombre="Reebok Classic" data-precio="1899" data-img="img/reebok1.jpg">Agregar al carrito</button>
+</div>
+
+<div class="card" data-marca="reebok">
+<img src="img/reebok2.jpg">
+<h2>Reebok Nano X</h2>
+<p class="precio">$2499</p>
+<button class="btn-carrito" data-nombre="Reebok Nano X" data-precio="2499" data-img="img/reebok2.jpg">Agregar al carrito</button>
+</div>
+
+
+<!-- ASICS -->
+
+<div class="card" data-marca="asics">
+<img src="img/asics1.jpg">
+<h2>Asics Gel Kayano</h2>
+<p class="precio">$2799</p>
+<button class="btn-carrito" data-nombre="Asics Gel Kayano" data-precio="2799" data-img="img/asics1.jpg">Agregar al carrito</button>
+</div>
+
+<div class="card" data-marca="asics">
+<img src="img/asics2.jpg">
+<h2>Asics Gel Nimbus</h2>
+<p class="precio">$2899</p>
+<button class="btn-carrito" data-nombre="Asics Gel Nimbus" data-precio="2899" data-img="img/asics2.jpg">Agregar al carrito</button>
+</div>
+
+</main>
 
 <script src="bradley.js"></script>
 
