@@ -1,15 +1,15 @@
 const botones = document.querySelectorAll(".filtro-btn");
 const cards = document.querySelectorAll(".card");
 
-botones.forEach(boton => {
-
-boton.addEventListener("click",()=>{
+function filtrarMarca(marca){
 
 botones.forEach(btn=>btn.classList.remove("active"));
 
-boton.classList.add("active");
+const botonActivo = document.querySelector(`[data-marca="${marca}"]`);
 
-const marca = boton.getAttribute("data-marca");
+if(botonActivo){
+botonActivo.classList.add("active");
+}
 
 cards.forEach(card=>{
 
@@ -28,10 +28,31 @@ card.getAttribute("data-marca")===marca
 
 });
 
-});
+}
+
+botones.forEach(boton => {
+
+boton.addEventListener("click",()=>{
+
+const marca = boton.getAttribute("data-marca");
+
+filtrarMarca(marca);
 
 });
 
+});
+
+
+const marcaURL = window.location.hash.replace("#","");
+
+if(marcaURL){
+
+filtrarMarca(marcaURL);
+
+}
+
+
+/* CARRITO */
 
 const botonesCarrito = document.querySelectorAll(".btn-carrito");
 

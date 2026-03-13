@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>SneakerStore</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
@@ -23,15 +26,14 @@ background:#0f0f0f;
 color:white;
 }
 
-/* NAVBAR */
+/* HEADER */
 
 header{
 display:flex;
 justify-content:space-between;
 align-items:center;
-padding:20px 50px;
+padding:20px 40px;
 background:#111;
-border-bottom:1px solid #222;
 }
 
 .logo{
@@ -40,20 +42,64 @@ font-weight:700;
 color:#00c853;
 }
 
+/* MENU HAMBURGUESA */
+
+.menu-btn{
+font-size:26px;
+cursor:pointer;
+}
+
+/* MENU LATERAL */
+
+nav{
+position:fixed;
+top:0;
+right:-250px;
+width:250px;
+height:100%;
+background:#111;
+padding-top:80px;
+display:flex;
+flex-direction:column;
+transition:.4s;
+z-index:999;
+}
+
+nav.active{
+right:0;
+}
+
 nav a{
-margin-left:25px;
-text-decoration:none;
 color:white;
-font-weight:500;
-transition:.3s;
+text-decoration:none;
+padding:15px 25px;
+border-bottom:1px solid #222;
+display:flex;
+align-items:center;
+gap:10px;
 }
 
 nav a:hover{
 color:#00c853;
 }
 
+/* CARRITO */
+
 .carrito{
-font-size:20px;
+display:flex;
+align-items:center;
+gap:8px;
+font-size:18px;
+}
+
+#contador{
+background:red;
+color:white;
+font-size:12px;
+padding:2px 6px;
+border-radius:10px;
+min-width:18px;
+text-align:center;
 }
 
 /* HERO */
@@ -65,19 +111,17 @@ flex-direction:column;
 justify-content:center;
 align-items:center;
 text-align:center;
-background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
-url("img/banner.jpg");
+background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)), url("img/banner.jpg");
 background-size:cover;
 background-position:center;
 }
 
 .hero h1{
-font-size:50px;
+font-size:48px;
 margin-bottom:10px;
 }
 
 .hero p{
-font-size:18px;
 opacity:.8;
 }
 
@@ -86,42 +130,55 @@ margin-top:20px;
 padding:12px 25px;
 background:#00c853;
 border:none;
-border-radius:5px;
+border-radius:6px;
 color:white;
 font-weight:500;
-cursor:pointer;
-transition:.3s;
 text-decoration:none;
-}
-
-.btn:hover{
-background:#00a844;
 }
 
 /* TITULOS */
 
 .section-title{
 text-align:center;
-margin:60px 0 25px 0;
+margin:60px 0 30px 0;
 font-size:32px;
 }
 
-/* MARCAS */
+/* SLIDER MARCAS */
 
-.scroll-container{
-overflow-x:auto;
-white-space:nowrap;
-padding:30px;
+.slider{
+width:100%;
+overflow:hidden;
+}
+
+.slides{
+display:flex;
+gap:20px;
+width:max-content;
+animation:scroll 25s linear infinite;
+}
+
+@keyframes scroll{
+
+0%{
+transform:translateX(0);
+}
+
+100%{
+transform:translateX(-50%);
+}
+
 }
 
 .marca-card{
-display:inline-block;
 background:#1a1a1a;
-margin-right:20px;
 border-radius:10px;
-width:240px;
+width:220px;
+flex-shrink:0;
+text-align:center;
+text-decoration:none;
+color:white;
 transition:.3s;
-cursor:pointer;
 }
 
 .marca-card img{
@@ -131,55 +188,67 @@ object-fit:cover;
 border-radius:10px 10px 0 0;
 }
 
-.marca-card h2{
-padding:15px;
-text-align:center;
-}
-
 .marca-card:hover{
-transform:translateY(-5px);
-box-shadow:0 10px 20px rgba(0,0,0,.6);
+transform:scale(1.05);
 }
 
-/* CONTACTO */
-
-.contacto{
-padding:60px;
-text-align:center;
-max-width:900px;
-margin:auto;
-}
-
-.contacto p{
-margin-top:15px;
-line-height:1.6;
-opacity:.8;
-}
-
-/* COMENTARIOS */
+/* FORMULARIO */
 
 .comentarios{
-padding:50px;
-background:#151515;
+padding:60px 20px;
 text-align:center;
 }
 
-.form-comentario{
-margin-top:20px;
+.form-contacto{
+max-width:700px;
+margin:auto;
+background:#1a1a1a;
+padding:40px;
+border-radius:10px;
+display:flex;
+flex-direction:column;
+gap:15px;
+border:1px solid #2a2a2a;
 }
 
-.form-comentario input,
-.form-comentario textarea{
-width:300px;
-padding:10px;
-margin:8px;
+.fila{
+display:flex;
+gap:15px;
+}
+
+.fila input{
+flex:1;
+}
+
+.form-contacto input,
+.form-contacto textarea{
+padding:12px;
 border:none;
-border-radius:5px;
+border-radius:6px;
+font-size:14px;
+background:#0f0f0f;
+color:white;
+border:1px solid #2a2a2a;
 }
 
-.form-comentario textarea{
-height:100px;
+.form-contacto textarea{
+height:120px;
 resize:none;
+}
+
+.btn-enviar{
+margin-top:10px;
+padding:14px;
+background:#00c853;
+border:none;
+border-radius:8px;
+color:white;
+font-weight:bold;
+cursor:pointer;
+}
+
+.btn-enviar:hover{
+background:#00a844;
 }
 
 /* FOOTER */
@@ -191,21 +260,6 @@ padding:40px 20px;
 text-align:center;
 }
 
-/* NEWSLETTER */
-
-.newsletter{
-margin-bottom:30px;
-}
-
-.newsletter h3{
-margin-bottom:10px;
-}
-
-.newsletter p{
-opacity:.7;
-margin-bottom:15px;
-}
-
 .newsletter input{
 padding:10px;
 border:none;
@@ -213,17 +267,6 @@ border-radius:5px;
 width:220px;
 margin-right:10px;
 }
-
-.newsletter button{
-padding:10px 15px;
-border:none;
-border-radius:5px;
-background:#00c853;
-color:white;
-cursor:pointer;
-}
-
-/* REDES */
 
 .redes{
 margin-top:20px;
@@ -233,14 +276,7 @@ margin-top:20px;
 color:white;
 margin:0 12px;
 font-size:22px;
-transition:.3s;
 }
-
-.redes a:hover{
-color:#00c853;
-}
-
-/* COPYRIGHT */
 
 .copy{
 margin-top:20px;
@@ -249,6 +285,7 @@ color:#aaa;
 }
 
 </style>
+
 </head>
 
 <body>
@@ -257,25 +294,30 @@ color:#aaa;
 
 <div class="logo">SneakerStore</div>
 
-<nav>
+<div class="menu-btn" id="menu-btn">
+<i class="fa-solid fa-bars"></i>
+</div>
+
+</header>
+
+<nav id="nav">
 
 <a href="productos.html">Productos</a>
 <a href="#marcas">Marcas</a>
-<a href="#contacto">Contactanos</a>
+<a href="#contacto">Contáctanos</a>
 
 <a href="carrito.html" class="carrito">
 <i class="fa-solid fa-cart-shopping"></i>
+<span id="contador">0</span>
 </a>
 
 </nav>
-
-</header>
 
 
 <section class="hero">
 
 <h1>Los Sneakers Más Deseados</h1>
-<p>Explora nuestra colección de zapatillas exclusivas</p>
+<p>Explora nuestra colección exclusiva</p>
 
 <a href="productos.html" class="btn">Ver colección</a>
 
@@ -284,75 +326,75 @@ color:#aaa;
 
 <h2 id="marcas" class="section-title">Marcas disponibles</h2>
 
-<section class="scroll-container">
+<div class="slider">
 
-<div class="marca-card">
+<div class="slides">
+
+<a href="productos.html#nike" class="marca-card">
 <img src="img/nike.png">
 <h2>Nike</h2>
-</div>
+</a>
 
-<div class="marca-card">
+<a href="productos.html#adidas" class="marca-card">
 <img src="img/adidas.png">
 <h2>Adidas</h2>
-</div>
+</a>
 
-<div class="marca-card">
+<a href="productos.html#puma" class="marca-card">
 <img src="img/puma.png">
 <h2>Puma</h2>
-</div>
+</a>
 
-<div class="marca-card">
+<a href="productos.html#newbalance" class="marca-card">
 <img src="img/newbalance.png">
 <h2>New Balance</h2>
-</div>
+</a>
 
-<div class="marca-card">
+<a href="productos.html#reebok" class="marca-card">
 <img src="img/reebok.png">
 <h2>Reebok</h2>
-</div>
+</a>
 
-<div class="marca-card">
+<a href="productos.html#asics" class="marca-card">
 <img src="img/asics.png">
 <h2>Asics</h2>
+</a>
+
+<!-- duplicadas para loop -->
+
+<a href="productos.html#nike" class="marca-card">
+<img src="img/nike.png">
+<h2>Nike</h2>
+</a>
+
+<a href="productos.html#adidas" class="marca-card">
+<img src="img/adidas.png">
+<h2>Adidas</h2>
+</a>
+
 </div>
 
-</section>
+</div>
 
 
-<section id="contacto" class="contacto">
+<section id="contacto" class="comentarios">
 
 <h2 class="section-title">Contáctanos</h2>
 
-<p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-Suspendisse potenti. Sed feugiat ligula vel justo facilisis,
-a gravida neque malesuada. Nuestro equipo está disponible
-para ayudarte con cualquier duda sobre nuestros productos,
-envíos o devoluciones.
-</p>
+<form class="form-contacto">
 
-<p>
-Email: contacto@sneakerstore.com  
-<br>
-Tel: +52 871 000 0000
-</p>
+<div class="fila">
 
-</section>
+<input type="text" placeholder="Nombre" required>
+<input type="text" placeholder="Apellidos" required>
 
+</div>
 
-<section class="comentarios">
+<input type="email" placeholder="Correo" required>
 
-<h2 class="section-title">Déjanos tu comentario</h2>
+<textarea placeholder="Mensaje"></textarea>
 
-<form class="form-comentario">
-
-<input type="email" placeholder="Tu correo" required>
-<br>
-
-<textarea placeholder="Escribe tu comentario"></textarea>
-<br>
-
-<button class="btn">Enviar comentario</button>
+<button class="btn-enviar">Enviar</button>
 
 </form>
 
@@ -365,13 +407,10 @@ Tel: +52 871 000 0000
 
 <h3>Suscríbete</h3>
 
-<p>
-Recibe ofertas exclusivas, lanzamientos de sneakers
-y descuentos especiales directamente en tu correo.
-</p>
+<p>Recibe ofertas exclusivas y lanzamientos.</p>
 
 <input type="email" placeholder="Tu correo">
-<button>Suscribirse</button>
+<button class="btn">Suscribirse</button>
 
 </div>
 
@@ -389,6 +428,25 @@ y descuentos especiales directamente en tu correo.
 </p>
 
 </footer>
+
+
+<script>
+
+const menuBtn = document.getElementById("menu-btn");
+const nav = document.getElementById("nav");
+
+menuBtn.onclick = function(){
+nav.classList.toggle("active");
+}
+
+function actualizarContador(){
+let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+document.getElementById("contador").textContent = carrito.length;
+}
+
+actualizarContador();
+
+</script>
 
 </body>
 </html>
