@@ -1,13 +1,19 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Carrito</title>
+
+<title>Carrito | SneakerStore</title>
+
+<link rel="icon" href="img/sneaker.png">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
 
@@ -34,15 +40,20 @@ background:#111;
 border-bottom:1px solid #222;
 }
 
+.iconos{
+display:flex;
+gap:20px;
+}
+
 .iconos a{
 color:white;
 font-size:22px;
-margin-right:20px;
 transition:.3s;
 }
 
 .iconos a:hover{
 color:#00c853;
+transform:scale(1.1);
 }
 
 .logo{
@@ -56,6 +67,38 @@ color:#00c853;
 h1{
 text-align:center;
 margin:40px 0;
+}
+
+/* ENVIO */
+
+.envio{
+text-align:center;
+background:#00c853;
+padding:12px;
+font-size:14px;
+}
+
+/* ICONOS DE CONFIANZA */
+
+.confianza{
+display:flex;
+justify-content:center;
+gap:50px;
+padding:30px 20px;
+background:#111;
+flex-wrap:wrap;
+}
+
+.confianza-item{
+text-align:center;
+font-size:14px;
+opacity:.9;
+}
+
+.confianza-item i{
+font-size:28px;
+color:#00c853;
+margin-bottom:8px;
 }
 
 /* PRODUCTOS */
@@ -75,10 +118,11 @@ width:260px;
 border-radius:10px;
 text-align:center;
 transition:.3s;
+animation:fadeUp .6s ease;
 }
 
 .producto:hover{
-transform:translateY(-5px);
+transform:translateY(-6px);
 box-shadow:0 10px 20px rgba(0,0,0,.6);
 }
 
@@ -87,9 +131,30 @@ width:180px;
 margin-bottom:10px;
 }
 
-.producto h3{
+.precio{
+color:#00c853;
 margin-bottom:10px;
 }
+
+/* CANTIDAD */
+
+.cantidad{
+display:flex;
+justify-content:center;
+align-items:center;
+gap:10px;
+margin-bottom:10px;
+}
+
+.cantidad button{
+background:#333;
+border:none;
+color:white;
+padding:5px 10px;
+cursor:pointer;
+}
+
+/* BOTONES */
 
 button{
 padding:8px 18px;
@@ -105,12 +170,109 @@ button:hover{
 background:#c62828;
 }
 
-/* TOTAL */
+/* RESUMEN */
 
-.total{
+.resumen{
+max-width:400px;
+margin:40px auto;
+background:#1a1a1a;
+padding:20px;
+border-radius:10px;
 text-align:center;
-margin:30px;
-font-size:20px;
+animation:fadeUp .6s ease;
+}
+
+.comprar{
+background:#00c853;
+}
+
+.comprar:hover{
+background:#00a844;
+}
+
+/* CARRITO VACIO */
+
+.vacio{
+text-align:center;
+margin:40px;
+opacity:.9;
+}
+
+.explorar{
+display:inline-block;
+margin-top:20px;
+padding:14px 28px;
+background:#00c853;
+color:white;
+border-radius:30px;
+text-decoration:none;
+transition:.3s;
+font-weight:500;
+}
+
+.explorar:hover{
+background:#00a844;
+transform:scale(1.05);
+}
+
+/* RECOMENDADOS */
+
+.recomendados{
+padding:60px 40px;
+text-align:center;
+}
+
+.recomendados h2{
+margin-bottom:30px;
+}
+
+.recomendados-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:30px;
+max-width:1100px;
+margin:auto;
+}
+
+.rec-card{
+background:#1a1a1a;
+padding:20px;
+border-radius:10px;
+transition:.3s;
+animation:fadeUp .7s ease;
+}
+
+.rec-card:hover{
+transform:translateY(-6px);
+}
+
+.rec-card img{
+width:150px;
+margin-bottom:10px;
+}
+
+.agregar{
+background:#00c853;
+}
+
+.agregar:hover{
+background:#00a844;
+}
+
+/* ANIMACION */
+
+@keyframes fadeUp{
+
+from{
+opacity:0;
+transform:translateY(20px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
 }
 
 </style>
@@ -124,11 +286,11 @@ font-size:20px;
 <div class="iconos">
 
 <a href="index.html">
-<i class="fa-solid fa-arrow-left"></i>
+<i class="fa-solid fa-house"></i>
 </a>
 
 <a href="productos.html">
-<i class="fa-solid fa-shoe-prints"></i>
+<i class="fa-solid fa-bag-shopping"></i>
 </a>
 
 </div>
@@ -137,39 +299,143 @@ font-size:20px;
 
 </header>
 
+<div class="envio">
+<i class="fa-solid fa-truck"></i> Envío gratis en compras mayores a $2000
+</div>
+
+<!-- ICONOS DE CONFIANZA -->
+
+<section class="confianza">
+
+<div class="confianza-item">
+<i class="fa-solid fa-lock"></i>
+<p>Pago seguro</p>
+</div>
+
+<div class="confianza-item">
+<i class="fa-solid fa-truck-fast"></i>
+<p>Envíos rápidos</p>
+</div>
+
+<div class="confianza-item">
+<i class="fa-solid fa-rotate-left"></i>
+<p>Devoluciones fáciles</p>
+</div>
+
+<div class="confianza-item">
+<i class="fa-solid fa-headset"></i>
+<p>Soporte 24/7</p>
+</div>
+
+</section>
 
 <h1>Tus productos</h1>
 
 <div id="carrito"></div>
 
-<div class="total" id="total"></div>
+<div class="resumen">
+
+<p id="subtotal"></p>
+<p id="envioCosto"></p>
+<p id="total"></p>
+
+<button onclick="vaciar()">Vaciar carrito</button>
+
+<br><br>
+
+<button class="comprar">
+<i class="fa-solid fa-credit-card"></i> Finalizar compra
+</button>
+
+</div>
+
+<!-- RECOMENDADOS -->
+
+<section class="recomendados">
+
+<h2>También te puede interesar</h2>
+
+<div class="recomendados-grid">
+
+<div class="rec-card">
+<img src="img/nike1.jpg">
+<h3>Nike Air Zoom</h3>
+<p>$1999</p>
+<button class="agregar" data-nombre="Nike Air Zoom" data-precio="1999" data-img="img/nike1.jpg">Agregar</button>
+</div>
+
+<div class="rec-card">
+<img src="img/adidas2.jpg">
+<h3>Adidas NMD R1</h3>
+<p>$2399</p>
+<button class="agregar" data-nombre="Adidas NMD R1" data-precio="2399" data-img="img/adidas2.jpg">Agregar</button>
+</div>
+
+<div class="rec-card">
+<img src="img/puma1.jpg">
+<h3>Puma RS-X</h3>
+<p>$1799</p>
+<button class="agregar" data-nombre="Puma RS-X" data-precio="1799" data-img="img/puma1.jpg">Agregar</button>
+</div>
+
+<div class="rec-card">
+<img src="img/newbalance1.jpg">
+<h3>New Balance 574</h3>
+<p>$2099</p>
+<button class="agregar" data-nombre="New Balance 574" data-precio="2099" data-img="img/newbalance1.jpg">Agregar</button>
+</div>
+
+</div>
+
+</section>
 
 <script>
 
 let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
 const contenedor = document.getElementById("carrito");
-const totalElemento = document.getElementById("total");
 
 function mostrarCarrito(){
 
 contenedor.innerHTML="";
 
-let total = 0;
+if(carrito.length===0){
+
+contenedor.innerHTML = `
+<div class="vacio">
+<i class="fa-solid fa-cart-shopping fa-3x"></i>
+<p>Tu carrito está vacío</p>
+<a class="explorar" href="productos.html">Explorar productos</a>
+</div>
+`;
+
+return;
+}
+
+let subtotal = 0;
 
 carrito.forEach((producto,index)=>{
 
-total += producto.precio || 0;
+if(!producto.cantidad){
+producto.cantidad = 1;
+}
+
+subtotal += producto.precio * producto.cantidad;
 
 contenedor.innerHTML += `
 
 <div class="producto">
 
 <img src="${producto.img}">
-
 <h3>${producto.nombre}</h3>
 
-<p>$${producto.precio || 0}</p>
+<p class="precio">$${producto.precio}</p>
+
+<div class="cantidad">
+<button onclick="restar(${index})">-</button>
+<span>${producto.cantidad}</span>
+<button onclick="sumar(${index})">+</button>
+</div>
 
 <button onclick="eliminar(${index})">
 <i class="fa-solid fa-trash"></i> Eliminar
@@ -181,19 +447,65 @@ contenedor.innerHTML += `
 
 });
 
-totalElemento.innerHTML = "Total: $" + total;
+localStorage.setItem("carrito",JSON.stringify(carrito));
+
+let envio = subtotal > 2000 ? 0 : 150;
+
+document.getElementById("subtotal").innerHTML = "Subtotal: $" + subtotal;
+document.getElementById("envioCosto").innerHTML = "Envío: $" + envio;
+document.getElementById("total").innerHTML = "Total: $" + (subtotal + envio);
 
 }
 
-function eliminar(index){
+function sumar(i){
+carrito[i].cantidad++;
+guardar();
+}
 
-carrito.splice(index,1);
+function restar(i){
+if(carrito[i].cantidad > 1){
+carrito[i].cantidad--;
+}
+guardar();
+}
+
+function eliminar(i){
+carrito.splice(i,1);
+guardar();
+}
+
+function vaciar(){
+carrito = [];
+guardar();
+}
+
+function guardar(){
+localStorage.setItem("carrito",JSON.stringify(carrito));
+mostrarCarrito();
+}
+
+document.querySelectorAll(".agregar").forEach(btn=>{
+
+btn.addEventListener("click",()=>{
+
+let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+const producto = {
+nombre:btn.dataset.nombre,
+precio:parseInt(btn.dataset.precio),
+img:btn.dataset.img,
+cantidad:1
+};
+
+carrito.push(producto);
 
 localStorage.setItem("carrito",JSON.stringify(carrito));
 
 mostrarCarrito();
 
-}
+});
+
+});
 
 mostrarCarrito();
 

@@ -8,9 +8,11 @@
 
 <title>SneakerStore</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+<link rel="icon" href="img/sneaker.png">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
 <style>
 
@@ -24,6 +26,7 @@ body{
 font-family:'Poppins',sans-serif;
 background:#0f0f0f;
 color:white;
+scroll-behavior:smooth;
 }
 
 /* HEADER */
@@ -34,6 +37,9 @@ justify-content:space-between;
 align-items:center;
 padding:20px 40px;
 background:#111;
+position:sticky;
+top:0;
+z-index:999;
 }
 
 .logo{
@@ -42,31 +48,37 @@ font-weight:700;
 color:#00c853;
 }
 
-/* MENU HAMBURGUESA */
-
 .menu-btn{
 font-size:26px;
 cursor:pointer;
 }
 
-/* MENU LATERAL */
+/* MENU */
 
 nav{
 position:fixed;
 top:0;
-right:-250px;
-width:250px;
+right:-260px;
+width:260px;
 height:100%;
 background:#111;
-padding-top:80px;
 display:flex;
 flex-direction:column;
-transition:.4s;
-z-index:999;
+padding-top:80px;
+transition:.3s;
+z-index:1000;
 }
 
 nav.active{
 right:0;
+}
+
+.close-btn{
+position:absolute;
+top:20px;
+right:20px;
+font-size:22px;
+cursor:pointer;
 }
 
 nav a{
@@ -74,189 +86,276 @@ color:white;
 text-decoration:none;
 padding:15px 25px;
 border-bottom:1px solid #222;
-display:flex;
-align-items:center;
-gap:10px;
 }
 
 nav a:hover{
 color:#00c853;
 }
 
-/* CARRITO */
-
 .carrito{
 display:flex;
 align-items:center;
 gap:8px;
-font-size:18px;
 }
 
 #contador{
 background:red;
-color:white;
-font-size:12px;
-padding:2px 6px;
+padding:3px 7px;
 border-radius:10px;
-min-width:18px;
-text-align:center;
+font-size:12px;
 }
 
 /* HERO */
 
 .hero{
-height:420px;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-text-align:center;
-background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)), url("img/banner.jpg");
-background-size:cover;
-background-position:center;
+position:relative;
+height:450px;
+overflow:hidden;
 }
 
-.hero h1{
+.slide{
+display:none;
+height:100%;
+position:relative;
+}
+
+.slide img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+.slide.active{
+display:block;
+}
+
+.overlay{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.5);
+}
+
+.hero-text{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+text-align:center;
+z-index:2;
+}
+
+.hero-text h1{
 font-size:48px;
 margin-bottom:10px;
 }
 
-.hero p{
-opacity:.8;
+.hero-text p{
+margin-bottom:20px;
+}
+
+.hero-buttons{
+display:flex;
+gap:20px;
+justify-content:center;
 }
 
 .btn{
-margin-top:20px;
-padding:12px 25px;
 background:#00c853;
+padding:12px 20px;
 border:none;
 border-radius:6px;
 color:white;
-font-weight:500;
 text-decoration:none;
+cursor:pointer;
+transition:.3s;
 }
 
-/* TITULOS */
+.btn:hover{
+background:#00a944;
+}
+
+.arrow{
+position:absolute;
+top:50%;
+transform:translateY(-50%);
+font-size:28px;
+background:#0008;
+padding:10px;
+cursor:pointer;
+z-index:2;
+}
+
+.left{left:20px;}
+.right{right:20px;}
+
+/* MARCAS */
 
 .section-title{
 text-align:center;
-margin:60px 0 30px 0;
+margin-top:60px;
 font-size:32px;
 }
 
-/* SLIDER MARCAS */
-
-.slider{
-width:100%;
+.slider-marcas{
 overflow:hidden;
+padding:60px 0;
 }
 
-.slides{
+.track-marcas{
 display:flex;
-gap:20px;
+gap:25px;
 width:max-content;
-animation:scroll 25s linear infinite;
+animation:scroll 20s linear infinite;
 }
 
 @keyframes scroll{
-
-0%{
-transform:translateX(0);
-}
-
-100%{
-transform:translateX(-50%);
-}
-
+0%{transform:translateX(0);}
+100%{transform:translateX(-50%);}
 }
 
 .marca-card{
 background:#1a1a1a;
-border-radius:10px;
-width:220px;
-flex-shrink:0;
-text-align:center;
-text-decoration:none;
-color:white;
-transition:.3s;
+border-radius:12px;
+width:200px;
+height:120px;
+display:flex;
+align-items:center;
+justify-content:center;
+box-shadow:0 5px 15px rgba(0,0,0,0.5);
 }
 
 .marca-card img{
-width:100%;
-height:160px;
-object-fit:cover;
-border-radius:10px 10px 0 0;
+width:80%;
 }
 
-.marca-card:hover{
-transform:scale(1.05);
+/* PRODUCTOS */
+
+.productos{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+padding:40px;
 }
 
-/* FORMULARIO */
-
-.comentarios{
-padding:60px 20px;
+.producto{
+background:#1a1a1a;
+border-radius:10px;
+overflow:hidden;
 text-align:center;
+padding-bottom:20px;
+transition:.3s;
+}
+
+.producto:hover{
+transform:translateY(-6px);
+}
+
+.producto img{
+width:100%;
+height:200px;
+object-fit:cover;
+}
+
+.precio{
+color:#00c853;
+margin:10px 0;
+}
+
+/* NOTICIAS */
+
+.noticias{
+padding:60px 40px;
+}
+
+.grid-noticias{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:25px;
+margin-top:40px;
+}
+
+.noticia{
+background:#1a1a1a;
+border-radius:10px;
+overflow:hidden;
+transition:.3s;
+}
+
+.noticia:hover{
+transform:translateY(-8px);
+}
+
+.noticia img{
+width:100%;
+height:180px;
+object-fit:cover;
+}
+
+.noticia-content{
+padding:20px;
+}
+
+.noticia-content p{
+font-size:14px;
+color:#ccc;
+margin:10px 0;
+}
+
+/* CONTACTO */
+
+.contacto{
+display:flex;
+gap:50px;
+padding:60px;
+flex-wrap:wrap;
 }
 
 .form-contacto{
-max-width:700px;
-margin:auto;
-background:#1a1a1a;
-padding:40px;
-border-radius:10px;
+flex:1;
 display:flex;
 flex-direction:column;
 gap:15px;
-border:1px solid #2a2a2a;
-}
-
-.fila{
-display:flex;
-gap:15px;
-}
-
-.fila input{
-flex:1;
 }
 
 .form-contacto input,
 .form-contacto textarea{
-padding:12px;
+padding:10px;
 border:none;
 border-radius:6px;
-font-size:14px;
-background:#0f0f0f;
+background:#1a1a1a;
 color:white;
-border:1px solid #2a2a2a;
 }
 
-.form-contacto textarea{
-height:120px;
-resize:none;
+.info-contacto{
+flex:1;
 }
 
-.btn-enviar{
-margin-top:10px;
-padding:14px;
-background:#00c853;
-border:none;
-border-radius:8px;
-color:white;
-font-weight:bold;
-cursor:pointer;
+.info-contacto p{
+margin-bottom:10px;
 }
 
-.btn-enviar:hover{
-background:#00a844;
+/* MAPA */
+
+.mapa{
+padding:60px;
+text-align:center;
 }
 
-/* FOOTER */
+.mapa iframe{
+width:100%;
+height:400px;
+border:0;
+border-radius:10px;
+}
 
-footer{
-margin-top:40px;
+/* NEWSLETTER */
+
+.newsletter{
 background:#111;
-padding:40px 20px;
+padding:50px;
 text-align:center;
 }
 
@@ -264,24 +363,34 @@ text-align:center;
 padding:10px;
 border:none;
 border-radius:5px;
-width:220px;
 margin-right:10px;
 }
 
-.redes{
-margin-top:20px;
+/* FOOTER */
+
+footer{
+background:#111;
+padding:40px;
+text-align:center;
 }
 
 .redes a{
 color:white;
-margin:0 12px;
 font-size:22px;
+margin:0 10px;
 }
 
-.copy{
-margin-top:20px;
-font-size:14px;
-color:#aaa;
+/* ANIMACIONES */
+
+.animar{
+opacity:0;
+transform:translateY(40px);
+transition:all .6s ease;
+}
+
+.animar.visible{
+opacity:1;
+transform:translateY(0);
 }
 
 </style>
@@ -294,17 +403,24 @@ color:#aaa;
 
 <div class="logo">SneakerStore</div>
 
-<div class="menu-btn" id="menu-btn">
+<div class="menu-btn" id="menuBtn">
 <i class="fa-solid fa-bars"></i>
 </div>
 
 </header>
 
-<nav id="nav">
+<nav id="menu">
+
+<div class="close-btn" id="closeBtn">
+<i class="fa-solid fa-xmark"></i>
+</div>
 
 <a href="productos.html">Productos</a>
 <a href="#marcas">Marcas</a>
+<a href="#ofertas">Ofertas</a>
+<a href="#noticias">Noticias</a>
 <a href="#contacto">Contáctanos</a>
+<a href="#mapa">Ubicación</a>
 
 <a href="carrito.html" class="carrito">
 <i class="fa-solid fa-cart-shopping"></i>
@@ -313,106 +429,206 @@ color:#aaa;
 
 </nav>
 
-
+<!-- HERO -->
 <section class="hero">
 
-<h1>Los Sneakers Más Deseados</h1>
-<p>Explora nuestra colección exclusiva</p>
+<div class="slide active">
+<img src="img/banner1.jpg">
+<div class="overlay"></div>
+</div>
 
+<div class="slide">
+<img src="img/banner2.jpg">
+<div class="overlay"></div>
+</div>
+
+<div class="slide">
+<img src="img/banner3.jpg">
+<div class="overlay"></div>
+</div>
+
+<div class="hero-text">
+<h1>Encuentra tus Sneakers</h1>
+<p>Las mejores marcas y estilos</p>
+
+<div class="hero-buttons">
 <a href="productos.html" class="btn">Ver colección</a>
+<a href="#marcas" class="btn">Explorar marcas</a>
+</div>
+
+</div>
+
+<div class="arrow left" onclick="prevSlide()">
+<i class="fa-solid fa-chevron-left"></i>
+</div>
+
+<div class="arrow right" onclick="nextSlide()">
+<i class="fa-solid fa-chevron-right"></i>
+</div>
 
 </section>
 
+<h2 id="marcas" class="section-title animar">Marcas</h2>
 
-<h2 id="marcas" class="section-title">Marcas disponibles</h2>
+<div class="slider-marcas animar">
 
-<div class="slider">
+<div class="track-marcas">
 
-<div class="slides">
+<a href="productos.html#nike" class="marca-card"><img src="img/nike.png"></a>
+<a href="productos.html#adidas" class="marca-card"><img src="img/adidas.png"></a>
+<a href="productos.html#puma" class="marca-card"><img src="img/puma.png"></a>
+<a href="productos.html#newbalance" class="marca-card"><img src="img/newbalance.png"></a>
+<a href="productos.html#reebok" class="marca-card"><img src="img/reebok.png"></a>
 
-<a href="productos.html#nike" class="marca-card">
+<a href="productos.html#nike" class="marca-card"><img src="img/nike.png"></a>
+<a href="productos.html#adidas" class="marca-card"><img src="img/adidas.png"></a>
+<a href="productos.html#puma" class="marca-card"><img src="img/puma.png"></a>
+<a href="productos.html#newbalance" class="marca-card"><img src="img/newbalance.png"></a>
+<a href="productos.html#reebok" class="marca-card"><img src="img/reebok.png"></a>
+
+</div>
+
+</div>
+
+<h2 id="ofertas" class="section-title animar">Ofertas del mes</h2>
+
+<section class="productos animar">
+
+<div class="producto">
+<img src="img/nike1.jpg">
+<h3>Nike Air Zoom</h3>
+<p class="precio">$1999</p>
+<a href="productos.html" class="btn">Comprar</a>
+</div>
+
+<div class="producto">
+<img src="img/adidas1.jpg">
+<h3>Adidas Ultraboost</h3>
+<p class="precio">$2399</p>
+<a href="productos.html" class="btn">Comprar</a>
+</div>
+
+<div class="producto">
+<img src="img/puma1.jpg">
+<h3>Puma RS-X</h3>
+<p class="precio">$1799</p>
+<a href="productos.html" class="btn">Comprar</a>
+</div>
+
+</section>
+
+<section id="noticias" class="noticias animar">
+
+<h2 class="section-title">Noticias</h2>
+
+<div class="grid-noticias">
+
+<div class="noticia">
 <img src="img/nike.png">
-<h2>Nike</h2>
-</a>
+<div class="noticia-content">
+<h3>Nike 2026</h3>
+<p>Nueva colección Nike.</p>
+<a href="#" class="btn">Ver más</a>
+</div>
+</div>
 
-<a href="productos.html#adidas" class="marca-card">
+<div class="noticia">
 <img src="img/adidas.png">
-<h2>Adidas</h2>
-</a>
+<div class="noticia-content">
+<h3>Adidas Boost</h3>
+<p>Innovación en running.</p>
+<a href="#" class="btn">Ver más</a>
+</div>
+</div>
 
-<a href="productos.html#puma" class="marca-card">
+<div class="noticia">
 <img src="img/puma.png">
-<h2>Puma</h2>
-</a>
+<div class="noticia-content">
+<h3>Puma RS</h3>
+<p>Edición limitada.</p>
+<a href="#" class="btn">Ver más</a>
+</div>
+</div>
 
-<a href="productos.html#newbalance" class="marca-card">
+<div class="noticia">
 <img src="img/newbalance.png">
-<h2>New Balance</h2>
-</a>
+<div class="noticia-content">
+<h3>New Balance</h3>
+<p>Estilo retro.</p>
+<a href="#" class="btn">Ver más</a>
+</div>
+</div>
 
-<a href="productos.html#reebok" class="marca-card">
+<div class="noticia">
 <img src="img/reebok.png">
-<h2>Reebok</h2>
-</a>
+<div class="noticia-content">
+<h3>Reebok Classic</h3>
+<p>Regreso del clásico.</p>
+<a href="#" class="btn">Ver más</a>
+</div>
+</div>
 
-<a href="productos.html#asics" class="marca-card">
+<div class="noticia">
 <img src="img/asics.png">
-<h2>Asics</h2>
-</a>
-
-<!-- duplicadas para loop -->
-
-<a href="productos.html#nike" class="marca-card">
-<img src="img/nike.png">
-<h2>Nike</h2>
-</a>
-
-<a href="productos.html#adidas" class="marca-card">
-<img src="img/adidas.png">
-<h2>Adidas</h2>
-</a>
-
+<div class="noticia-content">
+<h3>ASICS GEL</h3>
+<p>Mayor comodidad.</p>
+<a href="#" class="btn">Ver más</a>
+</div>
 </div>
 
 </div>
 
+</section>
 
-<section id="contacto" class="comentarios">
-
-<h2 class="section-title">Contáctanos</h2>
+<section id="contacto" class="contacto animar">
 
 <form class="form-contacto">
 
-<div class="fila">
+<h2>Envíanos un mensaje</h2>
 
-<input type="text" placeholder="Nombre" required>
-<input type="text" placeholder="Apellidos" required>
-
-</div>
-
-<input type="email" placeholder="Correo" required>
-
+<input type="text" placeholder="Nombre">
+<input type="email" placeholder="Correo">
 <textarea placeholder="Mensaje"></textarea>
 
-<button class="btn-enviar">Enviar</button>
+<button class="btn">Enviar mensaje</button>
 
 </form>
 
+<div class="info-contacto">
+
+<h2>Información</h2>
+
+<p>📧 contacto@sneakerstore.com</p>
+<p>📞 +52 656 123 4567</p>
+<p>📍 Ciudad Juárez, Chihuahua, México</p>
+
+</div>
+
 </section>
 
+<section id="mapa" class="mapa animar">
 
-<footer>
+<h2>Visítanos</h2>
 
-<div class="newsletter">
+<iframe src="https://maps.google.com/maps?q=ciudad%20juarez&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe>
 
-<h3>Suscríbete</h3>
+</section>
 
-<p>Recibe ofertas exclusivas y lanzamientos.</p>
+<section class="newsletter animar">
+
+<h2>Suscríbete</h2>
+
+<p>Recibe ofertas y lanzamientos</p>
 
 <input type="email" placeholder="Tu correo">
 <button class="btn">Suscribirse</button>
 
-</div>
+</section>
+
+<footer>
+
+<p>© 2026 SneakerStore</p>
 
 <div class="redes">
 
@@ -423,28 +639,70 @@ color:#aaa;
 
 </div>
 
-<p class="copy">
-© 2026 SneakerStore - Todos los derechos reservados
-</p>
-
 </footer>
-
 
 <script>
 
-const menuBtn = document.getElementById("menu-btn");
-const nav = document.getElementById("nav");
+/* MENU */
 
-menuBtn.onclick = function(){
-nav.classList.toggle("active");
+const menuBtn=document.getElementById("menuBtn")
+const closeBtn=document.getElementById("closeBtn")
+const menu=document.getElementById("menu")
+
+menuBtn.onclick=()=>menu.classList.add("active")
+closeBtn.onclick=()=>menu.classList.remove("active")
+
+/* HERO SLIDER */
+
+let slides=document.querySelectorAll(".slide")
+let index=0
+
+function showSlide(){
+slides.forEach(s=>s.classList.remove("active"))
+slides[index].classList.add("active")
 }
 
-function actualizarContador(){
-let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-document.getElementById("contador").textContent = carrito.length;
+function nextSlide(){
+index++
+if(index>=slides.length) index=0
+showSlide()
 }
 
-actualizarContador();
+function prevSlide(){
+index--
+if(index<0) index=slides.length-1
+showSlide()
+}
+
+setInterval(nextSlide,5000)
+
+/* CARRITO */
+
+let contador=document.getElementById("contador")
+
+function actualizarCarrito(){
+
+let carrito=JSON.parse(localStorage.getItem("carrito"))||[]
+
+contador.textContent=carrito.length
+
+}
+
+actualizarCarrito()
+
+/* ANIMACIONES SCROLL */
+
+const elementos=document.querySelectorAll(".animar")
+
+const observer=new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.classList.add("visible")
+}
+})
+})
+
+elementos.forEach(el=>observer.observe(el))
 
 </script>
 
