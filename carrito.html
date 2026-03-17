@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
 
 <meta charset="UTF-8">
@@ -17,11 +16,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
 
 <style>
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
+*{margin:0;padding:0;box-sizing:border-box;}
 
 body{
 font-family:'Poppins',sans-serif;
@@ -37,7 +32,6 @@ justify-content:space-between;
 align-items:center;
 padding:20px 50px;
 background:#111;
-border-bottom:1px solid #222;
 }
 
 .iconos{
@@ -48,43 +42,29 @@ gap:20px;
 .iconos a{
 color:white;
 font-size:22px;
-transition:.3s;
-}
-
-.iconos a:hover{
-color:#00c853;
-transform:scale(1.1);
 }
 
 .logo{
-font-size:24px;
-font-weight:700;
 color:#00c853;
+font-weight:700;
 }
 
-/* TITULO */
-
-h1{
-text-align:center;
-margin:40px 0;
-}
-
-/* ENVIO */
+/* ===== ENVIO GRATIS ===== */
 
 .envio{
 text-align:center;
-background:#00c853;
 padding:12px;
 font-size:14px;
+background:#ff9800;
 }
 
-/* ICONOS DE CONFIANZA */
+/* ===== CONFIANZA ===== */
 
 .confianza{
 display:flex;
 justify-content:center;
 gap:50px;
-padding:30px 20px;
+padding:25px;
 background:#111;
 flex-wrap:wrap;
 }
@@ -92,244 +72,215 @@ flex-wrap:wrap;
 .confianza-item{
 text-align:center;
 font-size:14px;
-opacity:.9;
 }
 
 .confianza-item i{
-font-size:28px;
+font-size:26px;
 color:#00c853;
-margin-bottom:8px;
+margin-bottom:5px;
 }
 
-/* PRODUCTOS */
+/* LAYOUT */
+
+.carrito-layout{
+display:flex;
+gap:40px;
+max-width:1200px;
+margin:auto;
+padding:20px;
+}
 
 #carrito{
+flex:2;
 display:flex;
-flex-wrap:wrap;
-justify-content:center;
-gap:30px;
-padding:20px;
+flex-direction:column;
+gap:15px;
+max-height:500px;
+overflow-y:auto;
 }
+
+/* PRODUCTO */
 
 .producto{
+display:grid;
+grid-template-columns:80px 1fr 120px 120px 60px;
 background:#1a1a1a;
-padding:20px;
-width:260px;
+padding:12px;
 border-radius:10px;
-text-align:center;
-transition:.3s;
-animation:fadeUp .6s ease;
-}
-
-.producto:hover{
-transform:translateY(-6px);
-box-shadow:0 10px 20px rgba(0,0,0,.6);
+align-items:center;
 }
 
 .producto img{
-width:180px;
-margin-bottom:10px;
+width:70px;
 }
 
 .precio{
 color:#00c853;
-margin-bottom:10px;
 }
 
 /* CANTIDAD */
 
 .cantidad{
 display:flex;
-justify-content:center;
-align-items:center;
-gap:10px;
-margin-bottom:10px;
+gap:8px;
 }
 
 .cantidad button{
 background:#333;
 border:none;
 color:white;
-padding:5px 10px;
+padding:5px;
 cursor:pointer;
 }
 
-/* BOTONES */
+/* ELIMINAR */
 
-button{
-padding:8px 18px;
+.eliminar{
+background:none;
 border:none;
-border-radius:5px;
-background:#e53935;
-color:white;
+color:#e53935;
 cursor:pointer;
-transition:.3s;
-}
-
-button:hover{
-background:#c62828;
 }
 
 /* RESUMEN */
 
 .resumen{
-max-width:400px;
-margin:40px auto;
+flex:1;
 background:#1a1a1a;
-padding:20px;
+padding:25px;
 border-radius:10px;
-text-align:center;
-animation:fadeUp .6s ease;
+}
+
+/* BOTONES */
+
+.vaciar{
+background:#e53935;
+color:white;
+padding:10px 20px;
+border:none;
+border-radius:6px;
+cursor:pointer;
+transition:.3s;
+}
+
+.vaciar:hover{
+background:#c62828;
 }
 
 .comprar{
 background:#00c853;
-}
-
-.comprar:hover{
-background:#00a844;
-}
-
-/* CARRITO VACIO */
-
-.vacio{
-text-align:center;
-margin:40px;
-opacity:.9;
-}
-
-.explorar{
-display:inline-block;
-margin-top:20px;
-padding:14px 28px;
-background:#00c853;
 color:white;
-border-radius:30px;
-text-decoration:none;
-transition:.3s;
-font-weight:500;
+padding:10px 20px;
+border:none;
+border-radius:6px;
+cursor:pointer;
+margin-top:10px;
 }
 
-.explorar:hover{
-background:#00a844;
-transform:scale(1.05);
+/* ===== METODO DE PAGO ===== */
+
+.pago{
+margin-top:20px;
 }
 
-/* RECOMENDADOS */
+.pago label{
+display:block;
+margin:8px 0;
+cursor:pointer;
+}
 
-.recomendados{
-padding:60px 40px;
+.form-tarjeta{
+display:none;
+margin-top:10px;
+}
+
+.form-tarjeta input{
+width:100%;
+margin-bottom:8px;
+padding:8px;
+border-radius:5px;
+border:none;
+}
+
+/* ===== INTERES ===== */
+
+.interes{
+margin-top:50px;
 text-align:center;
 }
 
-.recomendados h2{
-margin-bottom:30px;
+.slider{
+overflow:hidden;
+width:100%;
+background:#111;
+padding:30px 0;
 }
 
-.recomendados-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:30px;
-max-width:1100px;
-margin:auto;
+.slider-track{
+display:flex;
+width:max-content;
+animation:scroll 25s linear infinite;
 }
 
-.rec-card{
+/* TARJETAS UNIFORMES */
+
+.slider a{
+display:flex;
+justify-content:center;
+align-items:center;
+width:140px;
+height:120px;
+margin:0 20px;
 background:#1a1a1a;
-padding:20px;
 border-radius:10px;
+overflow:hidden;
 transition:.3s;
-animation:fadeUp .7s ease;
 }
 
-.rec-card:hover{
-transform:translateY(-6px);
+.slider a:hover{
+transform:scale(1.1);
 }
 
-.rec-card img{
-width:150px;
-margin-bottom:10px;
+.slider img{
+width:100%;
+height:100%;
+object-fit:contain;
 }
 
-.agregar{
-background:#00c853;
-}
-
-.agregar:hover{
-background:#00a844;
-}
-
-/* ANIMACION */
-
-@keyframes fadeUp{
-
-from{
-opacity:0;
-transform:translateY(20px);
-}
-
-to{
-opacity:1;
-transform:translateY(0);
-}
-
+@keyframes scroll{
+0%{transform:translateX(0);}
+100%{transform:translateX(-50%);}
 }
 
 </style>
-
 </head>
 
 <body>
 
 <header>
-
 <div class="iconos">
-
-<a href="index.html">
-<i class="fa-solid fa-house"></i>
-</a>
-
-<a href="productos.html">
-<i class="fa-solid fa-bag-shopping"></i>
-</a>
-
+<a href="index.html"><i class="fa-solid fa-house"></i></a>
+<a href="productos.html"><i class="fa-solid fa-bag-shopping"></i></a>
 </div>
-
 <div class="logo">Carrito</div>
-
 </header>
 
-<div class="envio">
-<i class="fa-solid fa-truck"></i> Envío gratis en compras mayores a $2000
+<!-- ENVIO GRATIS DINAMICO -->
+<div class="envio" id="barraEnvio">
+<i class="fa-solid fa-truck"></i> Calculando envío...
 </div>
 
-<!-- ICONOS DE CONFIANZA -->
-
+<!-- CONFIANZA -->
 <section class="confianza">
-
-<div class="confianza-item">
-<i class="fa-solid fa-lock"></i>
-<p>Pago seguro</p>
-</div>
-
-<div class="confianza-item">
-<i class="fa-solid fa-truck-fast"></i>
-<p>Envíos rápidos</p>
-</div>
-
-<div class="confianza-item">
-<i class="fa-solid fa-rotate-left"></i>
-<p>Devoluciones fáciles</p>
-</div>
-
-<div class="confianza-item">
-<i class="fa-solid fa-headset"></i>
-<p>Soporte 24/7</p>
-</div>
-
+<div class="confianza-item"><i class="fa-solid fa-lock"></i><p>Pago seguro</p></div>
+<div class="confianza-item"><i class="fa-solid fa-truck-fast"></i><p>Envíos rápidos</p></div>
+<div class="confianza-item"><i class="fa-solid fa-rotate-left"></i><p>Devoluciones fáciles</p></div>
+<div class="confianza-item"><i class="fa-solid fa-headset"></i><p>Soporte 24/7</p></div>
 </section>
 
-<h1>Tus productos</h1>
+<h1 style="text-align:center;margin-top:30px;">Tus productos</h1>
+
+<div class="carrito-layout">
 
 <div id="carrito"></div>
 
@@ -339,144 +290,129 @@ transform:translateY(0);
 <p id="envioCosto"></p>
 <p id="total"></p>
 
-<button onclick="vaciar()">Vaciar carrito</button>
+<div class="pago">
+<h3>Método de pago</h3>
+
+<label><input type="radio" name="pago" value="tarjeta"> Tarjeta</label>
+<label><input type="radio" name="pago" value="paypal"> PayPal</label>
+<label><input type="radio" name="pago" value="transferencia"> Transferencia</label>
+
+<div class="form-tarjeta" id="formTarjeta">
+<input type="text" placeholder="Número de tarjeta">
+<input type="text" placeholder="Nombre">
+<input type="text" placeholder="MM/AA">
+<input type="text" placeholder="CVV">
+</div>
+
+</div>
+
+<br>
+
+<button class="vaciar" onclick="vaciar()">
+<i class="fa-solid fa-trash"></i> Vaciar carrito
+</button>
 
 <br><br>
 
-<button class="comprar">
+<button class="comprar" onclick="finalizarCompra()">
 <i class="fa-solid fa-credit-card"></i> Finalizar compra
 </button>
 
 </div>
 
-<!-- RECOMENDADOS -->
+</div>
 
-<section class="recomendados">
-
+<!-- SLIDER -->
+<section class="interes">
 <h2>También te puede interesar</h2>
 
-<div class="recomendados-grid">
+<div class="slider">
+<div class="slider-track">
 
-<div class="rec-card">
-<img src="img/nike1.jpg">
-<h3>Nike Air Zoom</h3>
-<p>$1999</p>
-<button class="agregar" data-nombre="Nike Air Zoom" data-precio="1999" data-img="img/nike1.jpg">Agregar</button>
-</div>
+<a href="productos.html"><img src="img/nike1.jpg"></a>
+<a href="productos.html"><img src="img/nike2.jpg"></a>
+<a href="productos.html"><img src="img/nike3.jpg"></a>
 
-<div class="rec-card">
-<img src="img/adidas2.jpg">
-<h3>Adidas NMD R1</h3>
-<p>$2399</p>
-<button class="agregar" data-nombre="Adidas NMD R1" data-precio="2399" data-img="img/adidas2.jpg">Agregar</button>
-</div>
+<a href="productos.html"><img src="img/adidas1.jpg"></a>
+<a href="productos.html"><img src="img/adidas2.jpg"></a>
 
-<div class="rec-card">
-<img src="img/puma1.jpg">
-<h3>Puma RS-X</h3>
-<p>$1799</p>
-<button class="agregar" data-nombre="Puma RS-X" data-precio="1799" data-img="img/puma1.jpg">Agregar</button>
-</div>
+<a href="productos.html"><img src="img/puma1.jpg"></a>
+<a href="productos.html"><img src="img/puma2.jpg"></a>
 
-<div class="rec-card">
-<img src="img/newbalance1.jpg">
-<h3>New Balance 574</h3>
-<p>$2099</p>
-<button class="agregar" data-nombre="New Balance 574" data-precio="2099" data-img="img/newbalance1.jpg">Agregar</button>
-</div>
+<a href="productos.html"><img src="img/asics1.jpg"></a>
+<a href="productos.html"><img src="img/asics2.jpg"></a>
+
+<!-- LOOP -->
+<a href="productos.html"><img src="img/nike1.jpg"></a>
+<a href="productos.html"><img src="img/adidas1.jpg"></a>
+<a href="productos.html"><img src="img/puma1.jpg"></a>
 
 </div>
-
+</div>
 </section>
 
 <script>
 
 let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-
 const contenedor = document.getElementById("carrito");
 
+function actualizarBarraEnvio(subtotal){
+let barra = document.getElementById("barraEnvio");
+
+if(subtotal >= 5000){
+barra.innerHTML = "🚚 Envío gratis aplicado";
+barra.style.background = "#00c853";
+}else{
+let faltante = 5000 - subtotal;
+barra.innerHTML = `🚚 Te faltan $${faltante} para envío gratis`;
+barra.style.background = "#ff9800";
+}
+}
+
 function mostrarCarrito(){
-
 contenedor.innerHTML="";
+let subtotal=0;
 
-if(carrito.length===0){
+carrito.forEach((p,i)=>{
+subtotal+=p.precio*(p.cantidad||1);
 
-contenedor.innerHTML = `
-<div class="vacio">
-<i class="fa-solid fa-cart-shopping fa-3x"></i>
-<p>Tu carrito está vacío</p>
-<a class="explorar" href="productos.html">Explorar productos</a>
-</div>
-`;
-
-return;
-}
-
-let subtotal = 0;
-
-carrito.forEach((producto,index)=>{
-
-if(!producto.cantidad){
-producto.cantidad = 1;
-}
-
-subtotal += producto.precio * producto.cantidad;
-
-contenedor.innerHTML += `
-
+contenedor.innerHTML+=`
 <div class="producto">
-
-<img src="${producto.img}">
-<h3>${producto.nombre}</h3>
-
-<p class="precio">$${producto.precio}</p>
+<img src="${p.img}">
+<h3>${p.nombre}</h3>
+<p class="precio">$${p.precio}</p>
 
 <div class="cantidad">
-<button onclick="restar(${index})">-</button>
-<span>${producto.cantidad}</span>
-<button onclick="sumar(${index})">+</button>
+<button onclick="restar(${i})">-</button>
+<span>${p.cantidad||1}</span>
+<button onclick="sumar(${i})">+</button>
 </div>
 
-<button onclick="eliminar(${index})">
-<i class="fa-solid fa-trash"></i> Eliminar
+<button class="eliminar" onclick="eliminar(${i})">
+<i class="fa-solid fa-trash"></i>
 </button>
-
 </div>
-
 `;
-
 });
 
-localStorage.setItem("carrito",JSON.stringify(carrito));
+let envio=subtotal>=5000?0:150;
 
-let envio = subtotal > 2000 ? 0 : 150;
+document.getElementById("subtotal").innerText="Subtotal: $"+subtotal;
+document.getElementById("envioCosto").innerText="Envío: $"+envio;
+document.getElementById("total").innerText="Total: $"+(subtotal+envio);
 
-document.getElementById("subtotal").innerHTML = "Subtotal: $" + subtotal;
-document.getElementById("envioCosto").innerHTML = "Envío: $" + envio;
-document.getElementById("total").innerHTML = "Total: $" + (subtotal + envio);
-
+actualizarBarraEnvio(subtotal);
 }
 
-function sumar(i){
-carrito[i].cantidad++;
-guardar();
-}
-
-function restar(i){
-if(carrito[i].cantidad > 1){
-carrito[i].cantidad--;
-}
-guardar();
-}
-
-function eliminar(i){
-carrito.splice(i,1);
-guardar();
-}
+function sumar(i){carrito[i].cantidad=(carrito[i].cantidad||1)+1;guardar();}
+function restar(i){if(carrito[i].cantidad>1)carrito[i].cantidad--;guardar();}
+function eliminar(i){carrito.splice(i,1);guardar();}
 
 function vaciar(){
-carrito = [];
+if(confirm("¿Vaciar carrito?")){
+carrito=[];
 guardar();
+}
 }
 
 function guardar(){
@@ -484,28 +420,34 @@ localStorage.setItem("carrito",JSON.stringify(carrito));
 mostrarCarrito();
 }
 
-document.querySelectorAll(".agregar").forEach(btn=>{
-
-btn.addEventListener("click",()=>{
-
-let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-
-const producto = {
-nombre:btn.dataset.nombre,
-precio:parseInt(btn.dataset.precio),
-img:btn.dataset.img,
-cantidad:1
-};
-
-carrito.push(producto);
-
-localStorage.setItem("carrito",JSON.stringify(carrito));
-
-mostrarCarrito();
-
+document.querySelectorAll("input[name='pago']").forEach(r=>{
+r.addEventListener("change",()=>{
+document.getElementById("formTarjeta").style.display =
+r.value==="tarjeta"?"block":"none";
+});
 });
 
-});
+function finalizarCompra(){
+
+let metodo=document.querySelector("input[name='pago']:checked");
+
+if(!metodo){
+alert("Selecciona método de pago");
+return;
+}
+
+if(metodo.value==="tarjeta"){
+let inputs=document.querySelectorAll("#formTarjeta input");
+for(let i of inputs){
+if(i.value===""){
+alert("Completa datos de tarjeta");
+return;
+}
+}
+}
+
+alert("Compra realizada correctamente");
+}
 
 mostrarCarrito();
 
