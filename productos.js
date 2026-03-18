@@ -1,261 +1,258 @@
 /* ================================
-FILTROS POR MARCA
+ESTADO GLOBAL
 ================================ */
 
-const botones = document.querySelectorAll(".filtro-btn");
-const cards = document.querySelectorAll(".card");
+const state = {
+marca: "todos",
+texto: "",
+precio: "todos",
+orden: "default"
+};
 
-function filtrarMarca(marca){
+const cards = Array.from(document.querySelectorAll(".card"));
+const contenedor = document.querySelector(".contenedor");
 
-botones.forEach(btn=>btn.classList.remove("active"));
 
-const botonActivo = document.querySelector(`[data-marca="${marca}"]`);
+/* ================================
+APLICAR FILTROS COMBINADOS
+================================ */
 
-if(botonActivo){
-botonActivo.classList.add("active");
+function aplicarFiltros(){
+
+let visibles = cards.filter(card => {
+
+const marca = card.dataset.marca;
+const nombre = card.querySelector("h2").textContent.toLowerCase();
+const precio = parseInt(card.querySelector(".precio").dataset.precio);
+
+/* FILTRO MARCA */
+
+if(state.marca !== "todos" && marca !== state.marca){
+return false;
 }
 
-cards.forEach(card=>{
+/* BUSCADOR */
 
-if(marca==="todos"){
+if(!nombre.includes(state.texto)){
+return false;
+}
 
-card.style.display="block";
+/* FILTRO PRECIO */
 
-}else{
+if(state.precio !== "todos"){
 
-card.style.display =
-card.getAttribute("data-marca")===marca
-? "block"
-: "none";
+if(state.precio === "0-2000" && precio >= 2000) return false;
+if(state.precio === "2000-2500" && (precio < 2000 || precio > 2500)) return false;
+if(state.precio === "2500-3000" && (precio < 2500 || precio > 3000)) return false;
+if(state.precio === "3000+" && precio <= 3000) return false;
 
 }
+
+return true;
 
 });
 
-actualizarContadorProductos();
+/* ORDENAMIENTO */
+
+if(state.orden === "precio-asc"){
+visibles.sort((a,b)=>getPrecio(a)-getPrecio(b));
+}
+
+if(state.orden === "precio-desc"){
+visibles.sort((a,b)=>getPrecio(b)-getPrecio(a));
+}
+
+/* RENDER */
+
+cards.forEach(card => card.style.display = "none");
+
+visibles.forEach(card => {
+card.style.display = "block";
+contenedor.appendChild(card);
+});
+
+/* CONTADOR + MENSAJE */
+
+actualizarContador(visibles.length);
+mostrarSinResultados(visibles.length);
 
 }
 
-botones.forEach(boton => {
 
-boton.addEventListener("click",()=>{
+/* ================================
+HELPERS
+================================ */
 
-const marca = boton.getAttribute("data-marca");
+function getPrecio(card){
+return parseInt(card.querySelector(".precio").dataset.precio);
+}
 
-filtrarMarca(marca);
+function actualizarContador(cantidad){
+const contador = document.getElementById("contador-productos");
+if(contador){
+contador.textContent = "Mostrando " + cantidad + " productos";
+}
+}
+
+function mostrarSinResultados(cantidad){
+const msg = document.getElementById("sin-resultados");
+if(!msg) return;
+
+msg.style.display = cantidad === 0 ? "block" : "none";
+}
+
+
+/* ================================
+EVENTOS
+================================ */
+
+/* MARCA */
+
+document.querySelectorAll(".filtro-btn").forEach(btn=>{
+btn.addEventListener("click",()=>{
+
+document.querySelectorAll(".filtro-btn")
+.forEach(b=>b.classList.remove("active"));
+
+btn.classList.add("active");
+
+state.marca = btn.dataset.marca;
+
+aplicarFiltros();
 
 });
-
 });
+
+
+/* BUSCADOR */
+
+const buscador = document.getElementById("buscador");
+
+if(buscador){
+buscador.addEventListener("keyup",()=>{
+state.texto = buscador.value.toLowerCase();
+aplicarFiltros();
+});
+}
+
+
+/* PRECIO */
+
+const filtroPrecio = document.getElementById("filtro-precio");
+
+if(filtroPrecio){
+filtroPrecio.addEventListener("change",()=>{
+state.precio = filtroPrecio.value;
+aplicarFiltros();
+});
+}
+
+
+/* ORDEN */
+
+const ordenar = document.getElementById("ordenar");
+
+if(ordenar){
+ordenar.addEventListener("change",()=>{
+state.orden = ordenar.value;
+aplicarFiltros();
+});
+}
 
 
 /* ================================
 FILTRO DESDE URL
-productos.html#nike
 ================================ */
 
 const marcaURL = window.location.hash.replace("#","");
 
 if(marcaURL){
+state.marca = marcaURL;
 
-filtrarMarca(marcaURL);
+const btn = document.querySelector(`[data-marca="${marcaURL}"]`);
+if(btn){
+btn.classList.add("active");
+}
 
 }
 
 
 /* ================================
-BUSCADOR
+CARRITO (OPTIMIZADO)
 ================================ */
 
-const buscador = document.getElementById("buscador");
-
-if(buscador){
-
-buscador.addEventListener("keyup",()=>{
-
-const texto = buscador.value.toLowerCase();
-
-cards.forEach(card=>{
-
-const nombre = card.querySelector("h2").textContent.toLowerCase();
-
-if(nombre.includes(texto)){
-
-card.style.display="block";
-
-}else{
-
-card.style.display="none";
-
-}
-
-});
-
-actualizarContadorProductos();
-
-});
-
-}
-
-
-/* ================================
-ORDENAR PRODUCTOS
-================================ */
-
-const ordenar = document.getElementById("ordenar");
-
-if(ordenar){
-
-ordenar.addEventListener("change",()=>{
-
-const tipo = ordenar.value;
-
-const contenedor = document.querySelector(".contenedor");
-
-const productos = Array.from(cards);
-
-productos.sort((a,b)=>{
-
-const precioA = parseInt(a.querySelector(".precio").dataset.precio);
-const precioB = parseInt(b.querySelector(".precio").dataset.precio);
-
-if(tipo==="precio-asc"){
-return precioA-precioB;
-}
-
-if(tipo==="precio-desc"){
-return precioB-precioA;
-}
-
-return 0;
-
-});
-
-productos.forEach(p=>contenedor.appendChild(p));
-
-});
-
-}
-
-
-/* ================================
-CONTADOR PRODUCTOS VISIBLES
-================================ */
-
-function actualizarContadorProductos(){
-
-const visibles = [...cards].filter(card=>card.style.display!=="none");
-
-const contador = document.getElementById("contador-productos");
-
-if(contador){
-
-contador.textContent = "Mostrando "+visibles.length+" productos";
-
-}
-
-}
-
-actualizarContadorProductos();
-
-
-/* ================================
-CARRITO
-================================ */
-
-const botonesCarrito = document.querySelectorAll(".btn-carrito");
-
-botonesCarrito.forEach(btn=>{
+document.querySelectorAll(".btn-carrito").forEach(btn=>{
 
 btn.addEventListener("click",()=>{
 
 let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
-const nombre = btn.dataset.nombre;
-const precio = parseInt(btn.dataset.precio);
-const img = btn.dataset.img;
+const producto = {
+nombre: btn.dataset.nombre,
+precio: parseInt(btn.dataset.precio),
+img: btn.dataset.img
+};
 
-/* buscar si el producto ya existe */
-
-let existente = carrito.find(p => p.nombre === nombre);
+let existente = carrito.find(p => p.nombre === producto.nombre);
 
 if(existente){
-
 existente.cantidad++;
-
 }else{
-
-carrito.push({
-nombre:nombre,
-precio:precio,
-img:img,
-cantidad:1
-});
-
+producto.cantidad = 1;
+carrito.push(producto);
 }
 
-localStorage.setItem("carrito",JSON.stringify(carrito));
+localStorage.setItem("carrito", JSON.stringify(carrito));
 
-actualizarContador();
+actualizarCarritoUI(btn);
+actualizarContadorCarrito();
 
-/* animacion visual */
+});
 
-btn.innerHTML="✔ Agregado";
+});
 
+
+function actualizarCarritoUI(btn){
+btn.innerHTML = "✔ Agregado";
 setTimeout(()=>{
-btn.innerHTML="Agregar al carrito";
+btn.innerHTML = "Agregar al carrito";
 },1500);
+}
 
-});
-
-});
-
-
-/* ================================
-CONTADOR CARRITO REAL
-================================ */
-
-function actualizarContador(){
+function actualizarContadorCarrito(){
 
 let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
-let total = 0;
-
-carrito.forEach(p=>{
-total += p.cantidad;
-});
+let total = carrito.reduce((acc,p)=>acc+p.cantidad,0);
 
 const contador = document.getElementById("contador-carrito");
 
 if(contador){
-
 contador.textContent = total;
-
 }
 
 }
-
-actualizarContador();
 
 
 /* ================================
-ANIMACIONES DE APARICION
+INIT
 ================================ */
 
-const elementos = document.querySelectorAll(".animar");
+actualizarContadorCarrito();
+aplicarFiltros();
+
+
+/* ================================
+ANIMACIONES
+================================ */
 
 const observer = new IntersectionObserver(entries=>{
-
 entries.forEach(entry=>{
-
 if(entry.isIntersecting){
-
 entry.target.classList.add("visible");
-
 }
-
+});
 });
 
-});
-
-elementos.forEach(el=>observer.observe(el));
+document.querySelectorAll(".animar")
+.forEach(el=>observer.observe(el));
