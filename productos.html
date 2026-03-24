@@ -1,213 +1,1347 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Productos | SneakerStore</title>
-
 <link rel="icon" href="img/sneaker.png">
-<link rel="stylesheet" href="productos.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #0f0f0f;
+    color: white;
+}
+
+/* HEADER */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background: #111;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    border-bottom: 1px solid #222;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #00c853, #00e676);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-decoration: none;
+}
+
+.header-icons {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.home-btn, .cart-icon {
+    font-size: 24px;
+    cursor: pointer;
+    transition: 0.3s;
+    color: white;
+    background: none;
+    border: none;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.home-btn:hover, .cart-icon:hover {
+    color: #00c853;
+}
+
+.cart-icon {
+    position: relative;
+}
+
+#contador {
+    position: absolute;
+    top: -12px;
+    right: -12px;
+    background: #ff4444;
+    color: white;
+    padding: 3px 7px;
+    border-radius: 50%;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+/* CARRITO SIDEBAR */
+.cart-sidebar {
+    position: fixed;
+    top: 0;
+    right: -400px;
+    width: 400px;
+    height: 100%;
+    background: #111;
+    z-index: 1100;
+    transition: 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid #333;
+}
+
+.cart-sidebar.active {
+    right: 0;
+}
+
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #333;
+}
+
+.cart-header h3 {
+    font-size: 24px;
+}
+
+.close-cart {
+    font-size: 28px;
+    cursor: pointer;
+    color: #fff;
+}
+
+.cart-items {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+.cart-item {
+    display: flex;
+    gap: 15px;
+    padding: 15px;
+    background: #1a1a1a;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.cart-item img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.cart-item-info {
+    flex: 1;
+}
+
+.cart-item-info h4 {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.cart-item-info .cart-item-price {
+    color: #00c853;
+    font-weight: bold;
+}
+
+.cart-item-info .cart-item-talla {
+    font-size: 12px;
+    color: #888;
+}
+
+.cart-item-quantity {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 5px;
+}
+
+.cart-item-quantity button {
+    background: #333;
+    border: none;
+    color: white;
+    width: 25px;
+    height: 25px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.remove-item {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    color: #ff4444;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.cart-footer {
+    padding: 20px;
+    border-top: 1px solid #333;
+}
+
+.cart-footer p {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.cart-footer .btn {
+    width: 100%;
+}
+
+/* BOTONES */
+.btn {
+    background: linear-gradient(135deg, #00c853, #00e676);
+    padding: 12px 28px;
+    border: none;
+    border-radius: 30px;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: 600;
+    display: inline-block;
+    font-size: 14px;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(0,200,83,0.3);
+}
+
+/* WHATSAPP */
+.whatsapp-float {
+    position: fixed;
+    bottom: 30px;
+    left: 20px;
+    background: #25D366;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    color: white;
+    z-index: 100;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+}
+
+/* SCROLL TOP */
+.scroll-top {
+    position: fixed;
+    bottom: 30px;
+    right: 20px;
+    background: #00c853;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+    z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s;
+}
+
+.scroll-top.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* MODAL GUÍA TALLAS */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.9);
+    z-index: 1200;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: #1a1a1a;
+    padding: 30px;
+    border-radius: 20px;
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+.size-table {
+    width: 100%;
+    margin: 20px 0;
+    border-collapse: collapse;
+}
+
+.size-table th, .size-table td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #333;
+}
+
+.size-tip {
+    margin-top: 15px;
+    padding: 10px;
+    background: #00c85320;
+    border-radius: 10px;
+    color: #00c853;
+}
+
+/* LAYOUT PRINCIPAL DE PRODUCTOS */
+.productos-layout {
+    display: flex;
+    gap: 30px;
+    max-width: 1400px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+/* SIDEBAR DE FILTROS */
+.filtros-sidebar {
+    width: 280px;
+    background: #111;
+    border-radius: 20px;
+    padding: 25px;
+    position: sticky;
+    top: 100px;
+    height: fit-content;
+    border: 1px solid #222;
+}
+
+.filtros-sidebar h3 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #00c853;
+}
+
+.filtro-grupo {
+    margin-bottom: 25px;
+    border-bottom: 1px solid #222;
+    padding-bottom: 20px;
+}
+
+.filtro-grupo h4 {
+    font-size: 16px;
+    margin-bottom: 12px;
+    color: #ddd;
+}
+
+.marcas-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.marca-check {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #aaa;
+    transition: 0.3s;
+}
+
+.marca-check:hover {
+    color: #00c853;
+}
+
+.marca-check input {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    accent-color: #00c853;
+}
+
+.precio-rango {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.precio-check {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #aaa;
+}
+
+.precio-check input {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    accent-color: #00c853;
+}
+
+/* NUEVOS FILTROS: Nuevo y Oferta */
+.estado-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.estado-check {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #aaa;
+    transition: 0.3s;
+}
+
+.estado-check:hover {
+    color: #00c853;
+}
+
+.estado-check input {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    accent-color: #00c853;
+}
+
+.buscador-sidebar {
+    width: 100%;
+    padding: 12px 15px;
+    border: none;
+    border-radius: 30px;
+    background: #1a1a1a;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 20px;
+}
+
+.orden-select {
+    width: 100%;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 30px;
+    background: #1a1a1a;
+    color: white;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+}
+
+.limpiar-filtros {
+    width: 100%;
+    padding: 10px;
+    background: #ff5252;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    margin-top: 15px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.limpiar-filtros:hover {
+    background: #ff0000;
+}
+
+/* CONTADOR Y RESULTADOS */
+.resultados-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.contador-productos {
+    font-size: 14px;
+    color: #aaa;
+    background: #1a1a1a;
+    padding: 8px 16px;
+    border-radius: 30px;
+}
+
+.vista-toggle {
+    display: flex;
+    gap: 10px;
+}
+
+.vista-btn {
+    background: #1a1a1a;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.vista-btn.active {
+    background: #00c853;
+}
+
+.vista-btn:hover {
+    background: #00c853;
+}
+
+/* CONTENEDOR DE PRODUCTOS */
+.contenedor-productos {
+    flex: 1;
+}
+
+.productos-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.productos-grid.grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.productos-grid.grid-4 {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+/* TARJETA DE PRODUCTO */
+.card {
+    background: #1a1a1a;
+    border-radius: 16px;
+    overflow: hidden;
+    text-align: center;
+    transition: 0.3s;
+    position: relative;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.card:hover img {
+    transform: scale(1.05);
+}
+
+.card h2 {
+    padding: 15px 10px 5px;
+    font-size: 16px;
+}
+
+.categoria {
+    font-size: 12px;
+    opacity: 0.6;
+    margin-bottom: 5px;
+}
+
+/* PRECIO NORMAL */
+.precio {
+    color: #00c853;
+    font-weight: bold;
+    margin: 8px 0;
+    font-size: 20px;
+}
+
+/* PRECIO CON TACHADO (PARA OFERTAS) */
+.precio-wrapper {
+    margin: 8px 0;
+}
+
+.precio-original {
+    font-size: 16px;
+    color: #888;
+    text-decoration: line-through;
+    margin-right: 8px;
+}
+
+.precio-oferta {
+    color: #00c853;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.talla-select {
+    padding: 8px 12px;
+    margin: 8px auto;
+    border: none;
+    border-radius: 20px;
+    background: #2a2a2a;
+    color: white;
+    width: 80%;
+    cursor: pointer;
+}
+
+.btn-carrito {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 30px;
+    background: #00c853;
+    color: white;
+    cursor: pointer;
+    margin: 8px 0 15px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.btn-carrito:hover {
+    background: #00a944;
+    transform: scale(1.02);
+}
+
+/* BADGES */
+.badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: bold;
+    z-index: 2;
+}
+
+.badge-nuevo {
+    background: #00c853;
+}
+
+.badge-oferta {
+    background: #ff9800;
+}
+
+/* MENSAJE SIN RESULTADOS */
+.sin-resultados {
+    text-align: center;
+    padding: 60px 20px;
+    background: #1a1a1a;
+    border-radius: 20px;
+}
+
+.sin-resultados i {
+    font-size: 60px;
+    color: #888;
+    margin-bottom: 20px;
+}
+
+.sin-resultados h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+/* NOTIFICACION */
+.notification {
+    position: fixed;
+    bottom: 100px;
+    right: 20px;
+    background: #00c853;
+    color: white;
+    padding: 14px 28px;
+    border-radius: 50px;
+    z-index: 10000;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    animation: slideIn 0.3s ease;
+    cursor: pointer;
+}
+
+@keyframes slideIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideOut {
+    from { transform: translateX(0); opacity: 1; }
+    to { transform: translateX(100%); opacity: 0; }
+}
+
+/* FOOTER */
+footer {
+    background: #111;
+    padding: 40px;
+    text-align: center;
+    border-top: 1px solid #222;
+    margin-top: 60px;
+}
+
+.redes a {
+    color: white;
+    font-size: 24px;
+    margin: 0 15px;
+    transition: 0.3s;
+}
+
+.redes a:hover {
+    color: #00c853;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+    .productos-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .productos-layout {
+        flex-direction: column;
+    }
+    
+    .filtros-sidebar {
+        width: 100%;
+        position: static;
+    }
+    
+    .productos-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    header {
+        padding: 15px 20px;
+    }
+    
+    .cart-sidebar {
+        width: 100%;
+        right: -100%;
+    }
+}
+</style>
 </head>
 
 <body>
 
-<header class="header">
-
-<div class="nav-icons">
-<a href="index.html"><i class="fa-solid fa-house"></i></a>
-
-<a href="carrito.html" class="carrito-icono">
-<i class="fa-solid fa-cart-shopping"></i>
-<span id="contador-carrito">0</span>
-</a>
-</div>
-
-<h1 class="titulo">Novedades en Tenis</h1>
-
+<header>
+    <a href="index.html" class="logo">SneakerStore</a>
+    <div class="header-icons">
+        <a href="index.html" class="home-btn" title="Inicio">
+            <i class="fa-solid fa-house"></i>
+        </a>
+        <div class="cart-icon" id="cartIcon">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span id="contador">0</span>
+        </div>
+    </div>
 </header>
 
-<!-- BUSCADOR -->
-
-<section class="busqueda">
-<input type="text" id="buscador" placeholder="Buscar tenis...">
-
-<select id="ordenar">
-<option value="default">Ordenar</option>
-<option value="precio-asc">Precio menor</option>
-<option value="precio-desc">Precio mayor</option>
-</select>
-</section>
-
-<!-- FILTROS -->
-
-<section class="filtros">
-<button class="filtro-btn active" data-marca="todos">Todos</button>
-<button class="filtro-btn" data-marca="nike">Nike</button>
-<button class="filtro-btn" data-marca="adidas">Adidas</button>
-<button class="filtro-btn" data-marca="puma">Puma</button>
-<button class="filtro-btn" data-marca="newbalance">New Balance</button>
-<button class="filtro-btn" data-marca="reebok">Reebok</button>
-<button class="filtro-btn" data-marca="asics">Asics</button>
-</section>
-
-<!-- FILTRO PRECIO -->
-
-<section class="filtros">
-<select id="filtro-precio">
-<option value="todos">Todos los precios</option>
-<option value="0-2000">Menos de $2000</option>
-<option value="2000-2500">$2000 - $2500</option>
-<option value="2500-3000">$2500 - $3000</option>
-<option value="3000+">Más de $3000</option>
-</select>
-</section>
-
-<!-- CONTADOR -->
-
-<p id="contador-productos" class="contador">Mostrando productos</p>
-<p id="sin-resultados" class="oculto">No se encontraron productos</p>
-
-<!-- PRODUCTOS -->
-
-<main class="contenedor">
-
-<!-- NIKE -->
-<div class="card" data-marca="nike" data-categoria="running">
-<span class="badge nuevo">Nuevo</span>
-<img src="img/nike1.jpg">
-<h2>Nike Air Zoom</h2>
-<p class="categoria">Running</p>
-<p class="precio" data-precio="2499">$2499</p>
-<button class="btn-carrito" data-nombre="Nike Air Zoom" data-precio="2499" data-img="img/nike1.jpg">Agregar al carrito</button>
+<!-- CARRITO SIDEBAR -->
+<div class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+        <h3>Mi Carrito</h3>
+        <span class="close-cart" id="closeCart">&times;</span>
+    </div>
+    <div id="cartItems" class="cart-items">
+        <p style="text-align:center; color:#888;">Tu carrito está vacío</p>
+    </div>
+    <div class="cart-footer">
+        <p>Total: <span id="cartTotal">$0</span></p>
+        <a href="carrito.html" class="btn">Ver carrito</a>
+    </div>
 </div>
 
-<div class="card" data-marca="nike" data-categoria="casual">
-<img src="img/nike2.jpg">
-<h2>Nike Air Max 270</h2>
-<p class="categoria">Casual</p>
-<p class="precio" data-precio="2999">$2999</p>
-<button class="btn-carrito" data-nombre="Nike Air Max 270" data-precio="2999" data-img="img/nike2.jpg">Agregar al carrito</button>
+<!-- MODAL GUÍA TALLAS -->
+<div id="sizeModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" id="closeModal">&times;</span>
+        <h2>Guía de Tallas</h2>
+        <table class="size-table">
+            <tr><th>US</th><th>EU</th><th>MX</th><th>CM</th></tr>
+            <tr><td>5</td><td>36</td><td>3</td><td>22.5</td></tr>
+            <tr><td>6</td><td>37</td><td>4</td><td>23.5</td></tr>
+            <tr><td>7</td><td>38</td><td>4.5</td><td>24.5</td></tr>
+            <tr><td>8</td><td>39</td><td>5.5</td><td>25.5</td></tr>
+            <tr><td>9</td><td>40</td><td>6.5</td><td>26.5</td></tr>
+            <tr><td>10</td><td>41</td><td>7.5</td><td>27.5</td></tr>
+        </table>
+        <p class="size-tip">Tip: Nike viene pequeño, recomendamos media talla más.</p>
+    </div>
 </div>
 
-<div class="card" data-marca="nike" data-categoria="running">
-<img src="img/nike3.jpg">
-<h2>Nike Revolution 6</h2>
-<p class="categoria">Running</p>
-<p class="precio" data-precio="1799">$1799</p>
-<button class="btn-carrito" data-nombre="Nike Revolution 6" data-precio="1799" data-img="img/nike3.jpg">Agregar al carrito</button>
+<!-- LAYOUT PRINCIPAL -->
+<div class="productos-layout">
+    <!-- SIDEBAR DE FILTROS -->
+    <aside class="filtros-sidebar">
+        <h3><i class="fa-solid fa-filter"></i> Filtros</h3>
+        
+        <input type="text" id="buscador-sidebar" class="buscador-sidebar" placeholder="Buscar productos...">
+        
+        <div class="filtro-grupo">
+            <h4>Marcas</h4>
+            <div class="marcas-lista" id="marcas-lista"></div>
+        </div>
+        
+        <div class="filtro-grupo">
+            <h4>Precio</h4>
+            <div class="precio-rango" id="precio-rango"></div>
+        </div>
+        
+        <div class="filtro-grupo">
+            <h4>Categoría</h4>
+            <div class="marcas-lista" id="categorias-lista"></div>
+        </div>
+        
+        <!-- NUEVOS FILTROS: Nuevo y Oferta -->
+        <div class="filtro-grupo">
+            <h4>Estado</h4>
+            <div class="estado-lista" id="estado-lista"></div>
+        </div>
+        
+        <div class="filtro-grupo">
+            <h4>Ordenar por</h4>
+            <select id="ordenar-select" class="orden-select">
+                <option value="default">Relevancia</option>
+                <option value="precio-asc">Precio: menor a mayor</option>
+                <option value="precio-desc">Precio: mayor a menor</option>
+                <option value="nombre-asc">Nombre: A-Z</option>
+                <option value="nombre-desc">Nombre: Z-A</option>
+            </select>
+        </div>
+        
+        <button class="limpiar-filtros" id="limpiarFiltros">
+            <i class="fa-solid fa-eraser"></i> Limpiar filtros
+        </button>
+    </aside>
+    
+    <!-- CONTENEDOR DE PRODUCTOS -->
+    <div class="contenedor-productos">
+        <div class="resultados-header">
+            <div class="contador-productos" id="contador-productos">Mostrando 0 productos</div>
+            <div class="vista-toggle">
+                <button class="vista-btn" data-vista="2"><i class="fa-solid fa-table-cells-large"></i></button>
+                <button class="vista-btn active" data-vista="3"><i class="fa-solid fa-table-cells"></i></button>
+                <button class="vista-btn" data-vista="4"><i class="fa-solid fa-border-all"></i></button>
+            </div>
+        </div>
+        
+        <div class="productos-grid" id="productosGrid"></div>
+        <div id="sin-resultados" class="sin-resultados" style="display: none;">
+            <i class="fa-solid fa-search"></i>
+            <h3>No se encontraron productos</h3>
+            <p>Intenta con otros filtros o busca otra categoría</p>
+            <button class="btn" onclick="limpiarTodosLosFiltros()">Limpiar filtros</button>
+        </div>
+    </div>
 </div>
 
-<!-- ADIDAS -->
-<div class="card" data-marca="adidas" data-categoria="running">
-<span class="badge oferta">Oferta</span>
-<img src="img/adidas1.jpg">
-<h2>Adidas Ultraboost</h2>
-<p class="categoria">Running</p>
-<p class="precio" data-precio="3199">$3199</p>
-<button class="btn-carrito" data-nombre="Adidas Ultraboost" data-precio="3199" data-img="img/adidas1.jpg">Agregar al carrito</button>
+<footer>
+    <p>© <span id="year"></span> SneakerStore</p>
+    <div class="redes">
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+    </div>
+</footer>
+
+<!-- WHATSAPP -->
+<a href="https://wa.me/5216561234567?text=Hola" class="whatsapp-float" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+<!-- SCROLL TOP -->
+<div class="scroll-top" id="scrollTop">
+    <i class="fa-solid fa-arrow-up"></i>
 </div>
 
-<div class="card" data-marca="adidas" data-categoria="casual">
-<img src="img/adidas2.jpg">
-<h2>Adidas NMD R1</h2>
-<p class="categoria">Casual</p>
-<p class="precio" data-precio="2799">$2799</p>
-<button class="btn-carrito" data-nombre="Adidas NMD R1" data-precio="2799" data-img="img/adidas2.jpg">Agregar al carrito</button>
-</div>
+<script>
+// ========== FUNCIONES DEL CARRITO ==========
+function obtenerCarrito() {
+    const carrito = localStorage.getItem("carrito");
+    return carrito ? JSON.parse(carrito) : [];
+}
 
-<div class="card" data-marca="adidas" data-categoria="casual">
-<img src="img/adidas3.jpg">
-<h2>Adidas Superstar</h2>
-<p class="categoria">Casual</p>
-<p class="precio" data-precio="2199">$2199</p>
-<button class="btn-carrito" data-nombre="Adidas Superstar" data-precio="2199" data-img="img/adidas3.jpg">Agregar al carrito</button>
-</div>
+function guardarCarrito(carrito) {
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+    actualizarContadorGlobal();
+    renderCartSidebar();
+}
 
-<!-- PUMA -->
-<div class="card" data-marca="puma" data-categoria="casual">
-<img src="img/puma1.jpg">
-<h2>Puma RS-X</h2>
-<p class="categoria">Casual</p>
-<p class="precio" data-precio="2099">$2099</p>
-<button class="btn-carrito" data-nombre="Puma RS-X" data-precio="2099" data-img="img/puma1.jpg">Agregar al carrito</button>
-</div>
+function actualizarContadorGlobal() {
+    const carrito = obtenerCarrito();
+    const totalItems = carrito.reduce((sum, item) => sum + (item.cantidad || 1), 0);
+    const contadorSpan = document.getElementById("contador");
+    if (contadorSpan) contadorSpan.textContent = totalItems;
+}
 
-<div class="card" data-marca="puma" data-categoria="casual">
-<img src="img/puma2.jpg">
-<h2>Puma Future Rider</h2>
-<p class="categoria">Casual</p>
-<p class="precio" data-precio="2299">$2299</p>
-<button class="btn-carrito" data-nombre="Puma Future Rider" data-precio="2299" data-img="img/puma2.jpg">Agregar al carrito</button>
-</div>
+function mostrarNotificacion(mensaje, tipo = "success") {
+    document.querySelectorAll('.notification').forEach(n => n.remove());
+    
+    const notif = document.createElement("div");
+    notif.className = "notification";
+    notif.textContent = mensaje;
+    const color = tipo === "success" ? "#00c853" : tipo === "error" ? "#ff5252" : "#ff9800";
+    notif.style.background = color;
+    
+    document.body.appendChild(notif);
+    
+    setTimeout(() => {
+        if (notif) {
+            notif.style.animation = "slideOut 0.3s ease";
+            setTimeout(() => notif.remove(), 300);
+        }
+    }, 3000);
+    
+    notif.onclick = () => {
+        notif.style.animation = "slideOut 0.3s ease";
+        setTimeout(() => notif.remove(), 300);
+    };
+}
 
-<div class="card" data-marca="puma" data-categoria="casual">
-<img src="img/puma3.jpg">
-<h2>Puma Cali Sport</h2>
-<p class="categoria">Casual</p>
-<p class="precio" data-precio="1999">$1999</p>
-<button class="btn-carrito" data-nombre="Puma Cali Sport" data-precio="1999" data-img="img/puma3.jpg">Agregar al carrito</button>
-</div>
+function agregarAlCarrito(producto, talla) {
+    if (!producto || !producto.nombre || !producto.precio) {
+        mostrarNotificacion("Error al agregar producto", "error");
+        return false;
+    }
+    
+    let carrito = obtenerCarrito();
+    const existe = carrito.find(p => p.nombre === producto.nombre && p.talla === talla);
+    
+    if (existe) {
+        existe.cantidad = (existe.cantidad || 1) + 1;
+        mostrarNotificacion(`+1 ${producto.nombre} (${talla})`, "success");
+    } else {
+        carrito.push({
+            id: Date.now(),
+            nombre: producto.nombre,
+            precio: producto.precio,
+            img: producto.img || "img/default.jpg",
+            talla: talla,
+            cantidad: 1
+        });
+        mostrarNotificacion(`✓ ${producto.nombre} (${talla}) agregado`, "success");
+    }
+    
+    guardarCarrito(carrito);
+    return true;
+}
 
-<!-- NEW BALANCE -->
-<div class="card" data-marca="newbalance" data-categoria="casual">
-<img src="img/newbalance1.jpg">
-<h2>New Balance 574</h2>
-<p class="categoria">Casual</p>
-<p class="precio" data-precio="2199">$2199</p>
-<button class="btn-carrito" data-nombre="New Balance 574" data-precio="2199" data-img="img/newbalance1.jpg">Agregar al carrito</button>
-</div>
+// ========== DATOS DE PRODUCTOS CON PRECIOS DE OFERTA Y ETIQUETAS ==========
+const productosData = [
+    { id: 1, nombre: "Nike Air Zoom", marca: "nike", precio: 2499, precioOferta: null, img: "img/nike1.jpg", categoria: "Running", badge: "nuevo" },
+    { id: 2, nombre: "Nike Air Max 270", marca: "nike", precio: 2999, precioOferta: null, img: "img/nike2.jpg", categoria: "Casual", badge: null },
+    { id: 3, nombre: "Nike Revolution 6", marca: "nike", precio: 1799, precioOferta: null, img: "img/nike3.jpg", categoria: "Running", badge: null },
+    { id: 4, nombre: "Adidas Ultraboost", marca: "adidas", precio: 3199, precioOferta: 2799, img: "img/adidas1.jpg", categoria: "Running", badge: "oferta" },
+    { id: 5, nombre: "Adidas NMD R1", marca: "adidas", precio: 2799, precioOferta: null, img: "img/adidas2.jpg", categoria: "Casual", badge: null },
+    { id: 6, nombre: "Adidas Superstar", marca: "adidas", precio: 2199, precioOferta: null, img: "img/adidas3.jpg", categoria: "Casual", badge: null },
+    { id: 7, nombre: "Puma RS-X", marca: "puma", precio: 2099, precioOferta: 1799, img: "img/puma1.jpg", categoria: "Casual", badge: "oferta" },
+    { id: 8, nombre: "Puma Future Rider", marca: "puma", precio: 2299, precioOferta: null, img: "img/puma2.jpg", categoria: "Casual", badge: null },
+    { id: 9, nombre: "Puma Cali Sport", marca: "puma", precio: 1999, precioOferta: null, img: "img/puma3.jpg", categoria: "Casual", badge: null },
+    { id: 10, nombre: "New Balance 574", marca: "newbalance", precio: 2199, precioOferta: null, img: "img/newbalance1.jpg", categoria: "Casual", badge: null },
+    { id: 11, nombre: "New Balance 990", marca: "newbalance", precio: 2999, precioOferta: null, img: "img/newbalance2.jpg", categoria: "Running", badge: "nuevo" },
+    { id: 12, nombre: "Reebok Classic", marca: "reebok", precio: 1899, precioOferta: null, img: "img/reebok1.jpg", categoria: "Casual", badge: null },
+    { id: 13, nombre: "Reebok Nano X", marca: "reebok", precio: 2499, precioOferta: 2099, img: "img/reebok2.jpg", categoria: "Running", badge: "oferta" },
+    { id: 14, nombre: "Asics Gel Kayano", marca: "asics", precio: 2799, precioOferta: null, img: "img/asics1.jpg", categoria: "Running", badge: "nuevo" },
+    { id: 15, nombre: "Asics Gel Nimbus", marca: "asics", precio: 2899, precioOferta: null, img: "img/asics2.jpg", categoria: "Running", badge: null }
+];
 
-<div class="card" data-marca="newbalance" data-categoria="running">
-<img src="img/newbalance2.jpg">
-<h2>New Balance 990</h2>
-<p class="categoria">Running</p>
-<p class="precio" data-precio="2999">$2999</p>
-<button class="btn-carrito" data-nombre="New Balance 990" data-precio="2999" data-img="img/newbalance2.jpg">Agregar al carrito</button>
-</div>
+// Marcas y categorías únicas
+const marcasUnicas = [...new Set(productosData.map(p => p.marca))];
+const categoriasUnicas = [...new Set(productosData.map(p => p.categoria))];
 
-<!-- REEBOK -->
-<div class="card" data-marca="reebok" data-categoria="casual">
-<img src="img/reebok1.jpg">
-<h2>Reebok Classic</h2>
-<p class="categoria">Casual</p>
-<p class="precio" data-precio="1899">$1899</p>
-<button class="btn-carrito" data-nombre="Reebok Classic" data-precio="1899" data-img="img/reebok1.jpg">Agregar al carrito</button>
-</div>
+// Estado de filtros (incluyendo nuevos filtros de estado)
+let filtros = {
+    marcas: [],
+    precios: [],
+    categorias: [],
+    estados: [], // nuevo: "nuevo" o "oferta"
+    texto: "",
+    orden: "default"
+};
 
-<div class="card" data-marca="reebok" data-categoria="running">
-<img src="img/reebok2.jpg">
-<h2>Reebok Nano X</h2>
-<p class="categoria">Running</p>
-<p class="precio" data-precio="2499">$2499</p>
-<button class="btn-carrito" data-nombre="Reebok Nano X" data-precio="2499" data-img="img/reebok2.jpg">Agregar al carrito</button>
-</div>
+let vistaActual = 3;
 
-<!-- ASICS -->
-<div class="card" data-marca="asics" data-categoria="running">
-<img src="img/asics1.jpg">
-<h2>Asics Gel Kayano</h2>
-<p class="categoria">Running</p>
-<p class="precio" data-precio="2799">$2799</p>
-<button class="btn-carrito" data-nombre="Asics Gel Kayano" data-precio="2799" data-img="img/asics1.jpg">Agregar al carrito</button>
-</div>
+// Renderizar filtros en sidebar
+function renderizarFiltrosSidebar() {
+    const marcasContainer = document.getElementById("marcas-lista");
+    marcasContainer.innerHTML = marcasUnicas.map(m => `
+        <label class="marca-check">
+            <input type="checkbox" value="${m}" ${filtros.marcas.includes(m) ? 'checked' : ''} onchange="toggleMarca('${m}')">
+            <span>${m.charAt(0).toUpperCase() + m.slice(1)}</span>
+        </label>
+    `).join('');
+    
+    const preciosContainer = document.getElementById("precio-rango");
+    const rangosPrecio = [
+        { label: "Menos de $2000", min: 0, max: 2000 },
+        { label: "$2000 - $2500", min: 2000, max: 2500 },
+        { label: "$2500 - $3000", min: 2500, max: 3000 },
+        { label: "Más de $3000", min: 3000, max: Infinity }
+    ];
+    preciosContainer.innerHTML = rangosPrecio.map((r, i) => `
+        <label class="precio-check">
+            <input type="checkbox" value="${i}" ${filtros.precios.includes(i) ? 'checked' : ''} onchange="togglePrecio(${i})">
+            <span>${r.label}</span>
+        </label>
+    `).join('');
+    
+    const categoriasContainer = document.getElementById("categorias-lista");
+    categoriasContainer.innerHTML = categoriasUnicas.map(c => `
+        <label class="marca-check">
+            <input type="checkbox" value="${c}" ${filtros.categorias.includes(c) ? 'checked' : ''} onchange="toggleCategoria('${c}')">
+            <span>${c}</span>
+        </label>
+    `).join('');
+    
+    // NUEVOS FILTROS DE ESTADO
+    const estadosContainer = document.getElementById("estado-lista");
+    const estadosOpciones = [
+        { value: "nuevo", label: "🆕 Nuevo" },
+        { value: "oferta", label: "🔥 En oferta" }
+    ];
+    estadosContainer.innerHTML = estadosOpciones.map(e => `
+        <label class="estado-check">
+            <input type="checkbox" value="${e.value}" ${filtros.estados.includes(e.value) ? 'checked' : ''} onchange="toggleEstado('${e.value}')">
+            <span>${e.label}</span>
+        </label>
+    `).join('');
+}
 
-<div class="card" data-marca="asics" data-categoria="running">
-<img src="img/asics2.jpg">
-<h2>Asics Gel Nimbus</h2>
-<p class="categoria">Running</p>
-<p class="precio" data-precio="2899">$2899</p>
-<button class="btn-carrito" data-nombre="Asics Gel Nimbus" data-precio="2899" data-img="img/asics2.jpg">Agregar al carrito</button>
-</div>
+function toggleMarca(marca) {
+    if (filtros.marcas.includes(marca)) {
+        filtros.marcas = filtros.marcas.filter(m => m !== marca);
+    } else {
+        filtros.marcas.push(marca);
+    }
+    aplicarFiltros();
+}
 
-</main>
+function togglePrecio(index) {
+    if (filtros.precios.includes(index)) {
+        filtros.precios = filtros.precios.filter(i => i !== index);
+    } else {
+        filtros.precios.push(index);
+    }
+    aplicarFiltros();
+}
 
-<script src="productos.js"></script>
+function toggleCategoria(categoria) {
+    if (filtros.categorias.includes(categoria)) {
+        filtros.categorias = filtros.categorias.filter(c => c !== categoria);
+    } else {
+        filtros.categorias.push(categoria);
+    }
+    aplicarFiltros();
+}
 
+// Nueva función para toggle de estado
+function toggleEstado(estado) {
+    if (filtros.estados.includes(estado)) {
+        filtros.estados = filtros.estados.filter(e => e !== estado);
+    } else {
+        filtros.estados.push(estado);
+    }
+    aplicarFiltros();
+}
+
+function limpiarTodosLosFiltros() {
+    filtros = {
+        marcas: [],
+        precios: [],
+        categorias: [],
+        estados: [],
+        texto: "",
+        orden: "default"
+    };
+    document.getElementById("buscador-sidebar").value = "";
+    document.getElementById("ordenar-select").value = "default";
+    renderizarFiltrosSidebar();
+    aplicarFiltros();
+}
+
+// Aplicar filtros a los productos
+function aplicarFiltros() {
+    let filtrados = productosData.filter(p => {
+        if (filtros.texto && !p.nombre.toLowerCase().includes(filtros.texto.toLowerCase())) return false;
+        if (filtros.marcas.length > 0 && !filtros.marcas.includes(p.marca)) return false;
+        if (filtros.categorias.length > 0 && !filtros.categorias.includes(p.categoria)) return false;
+        
+        // NUEVO FILTRO POR ESTADO (Nuevo / Oferta)
+        if (filtros.estados.length > 0) {
+            let estadoValido = false;
+            if (filtros.estados.includes("nuevo") && p.badge === "nuevo") estadoValido = true;
+            if (filtros.estados.includes("oferta") && p.badge === "oferta") estadoValido = true;
+            if (!estadoValido) return false;
+        }
+        
+        const precioActual = p.precioOferta || p.precio;
+        if (filtros.precios.length > 0) {
+            const rangos = [
+                { min: 0, max: 2000 },
+                { min: 2000, max: 2500 },
+                { min: 2500, max: 3000 },
+                { min: 3000, max: Infinity }
+            ];
+            let precioValido = false;
+            for (let i of filtros.precios) {
+                if (precioActual >= rangos[i].min && precioActual < rangos[i].max) {
+                    precioValido = true;
+                    break;
+                }
+            }
+            if (!precioValido) return false;
+        }
+        return true;
+    });
+    
+    if (filtros.orden === "precio-asc") {
+        filtrados.sort((a, b) => (a.precioOferta || a.precio) - (b.precioOferta || b.precio));
+    } else if (filtros.orden === "precio-desc") {
+        filtrados.sort((a, b) => (b.precioOferta || b.precio) - (a.precioOferta || a.precio));
+    } else if (filtros.orden === "nombre-asc") {
+        filtrados.sort((a, b) => a.nombre.localeCompare(b.nombre));
+    } else if (filtros.orden === "nombre-desc") {
+        filtrados.sort((a, b) => b.nombre.localeCompare(a.nombre));
+    }
+    
+    renderProductos(filtrados);
+}
+
+// Renderizar productos
+function renderProductos(productos) {
+    const container = document.getElementById("productosGrid");
+    const contadorSpan = document.getElementById("contador-productos");
+    const sinResultados = document.getElementById("sin-resultados");
+    
+    if (productos.length === 0) {
+        container.innerHTML = "";
+        sinResultados.style.display = "block";
+        contadorSpan.textContent = `Mostrando 0 productos`;
+        return;
+    }
+    
+    sinResultados.style.display = "none";
+    contadorSpan.textContent = `Mostrando ${productos.length} productos`;
+    
+    container.innerHTML = productos.map(p => {
+        // Determinar badge
+        let badgeHtml = '';
+        if (p.badge === "nuevo") {
+            badgeHtml = '<span class="badge badge-nuevo">🆕 Nuevo</span>';
+        } else if (p.badge === "oferta") {
+            badgeHtml = '<span class="badge badge-oferta">🔥 Oferta</span>';
+        }
+        
+        // Determinar precio (con o sin oferta)
+        let precioHtml = '';
+        if (p.precioOferta) {
+            precioHtml = `
+                <div class="precio-wrapper">
+                    <span class="precio-original">$${p.precio.toLocaleString()}</span>
+                    <span class="precio-oferta">$${p.precioOferta.toLocaleString()}</span>
+                </div>
+            `;
+        } else {
+            precioHtml = `<p class="precio">$${p.precio.toLocaleString()}</p>`;
+        }
+        
+        return `
+            <div class="card">
+                ${badgeHtml}
+                <img src="${p.img}" alt="${p.nombre}">
+                <h2>${p.nombre}</h2>
+                <p class="categoria">${p.categoria}</p>
+                ${precioHtml}
+                <select class="talla-select" id="talla-${p.id}">
+                    <option>US 7</option><option>US 8</option><option>US 9</option><option>US 10</option>
+                </select>
+                <button class="btn-carrito" onclick="agregarProducto(${p.id})">Agregar al carrito</button>
+            </div>
+        `;
+    }).join('');
+    
+    const grid = document.getElementById("productosGrid");
+    grid.className = `productos-grid grid-${vistaActual}`;
+}
+
+function agregarProducto(id) {
+    const producto = productosData.find(p => p.id === id);
+    if (producto) {
+        const tallaSelect = document.getElementById(`talla-${id}`);
+        const talla = tallaSelect ? tallaSelect.value : "US 8";
+        const precioFinal = producto.precioOferta || producto.precio;
+        
+        agregarAlCarrito({
+            nombre: producto.nombre,
+            precio: precioFinal,
+            img: producto.img
+        }, talla);
+    }
+}
+
+// Renderizar carrito sidebar
+function renderCartSidebar() {
+    const carrito = obtenerCarrito();
+    const cartContainer = document.getElementById("cartItems");
+    const cartTotalSpan = document.getElementById("cartTotal");
+    
+    if (!cartContainer) return;
+    
+    if (carrito.length === 0) {
+        cartContainer.innerHTML = '<p style="text-align:center; color:#888;">Tu carrito está vacío</p>';
+        if (cartTotalSpan) cartTotalSpan.textContent = "$0";
+        return;
+    }
+    
+    let total = 0;
+    cartContainer.innerHTML = "";
+    carrito.forEach((item, index) => {
+        total += item.precio * (item.cantidad || 1);
+        cartContainer.innerHTML += `
+            <div class="cart-item">
+                <img src="${item.img}">
+                <div class="cart-item-info">
+                    <h4>${item.nombre}</h4>
+                    <p class="cart-item-price">$${item.precio.toLocaleString()}</p>
+                    <p class="cart-item-talla">Talla: ${item.talla || "US 8"}</p>
+                    <div class="cart-item-quantity">
+                        <button onclick="updateCartQty(${index}, -1)">-</button>
+                        <span>${item.cantidad || 1}</span>
+                        <button onclick="updateCartQty(${index}, 1)">+</button>
+                    </div>
+                </div>
+                <button class="remove-item" onclick="removeCartItem(${index})">
+                    <i class="fa-solid fa-trash"></i>
+                </button>
+            </div>
+        `;
+    });
+    if (cartTotalSpan) cartTotalSpan.textContent = "$" + total.toLocaleString();
+}
+
+function updateCartQty(index, change) {
+    let carrito = obtenerCarrito();
+    const nueva = (carrito[index].cantidad || 1) + change;
+    if (nueva < 1) return;
+    carrito[index].cantidad = nueva;
+    guardarCarrito(carrito);
+}
+
+function removeCartItem(index) {
+    let carrito = obtenerCarrito();
+    carrito.splice(index, 1);
+    guardarCarrito(carrito);
+}
+
+// Event listeners
+document.getElementById("buscador-sidebar").addEventListener("input", (e) => {
+    filtros.texto = e.target.value;
+    aplicarFiltros();
+});
+
+document.getElementById("ordenar-select").addEventListener("change", (e) => {
+    filtros.orden = e.target.value;
+    aplicarFiltros();
+});
+
+document.getElementById("limpiarFiltros").addEventListener("click", () => {
+    limpiarTodosLosFiltros();
+});
+
+// Vista toggle
+document.querySelectorAll(".vista-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+        document.querySelectorAll(".vista-btn").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        vistaActual = parseInt(btn.dataset.vista);
+        const grid = document.getElementById("productosGrid");
+        if (grid) grid.className = `productos-grid grid-${vistaActual}`;
+    });
+});
+
+// Filtrar desde URL (hash)
+const marcaURL = window.location.hash.replace("#", "");
+if (marcaURL && marcasUnicas.includes(marcaURL)) {
+    filtros.marcas = [marcaURL];
+}
+
+// Carrito sidebar
+const cartIcon = document.getElementById("cartIcon");
+const cartSidebar = document.getElementById("cartSidebar");
+const closeCart = document.getElementById("closeCart");
+const sizeGuideBtn = document.getElementById("sizeGuideBtn");
+const sizeModal = document.getElementById("sizeModal");
+const closeModal = document.getElementById("closeModal");
+
+if (cartIcon) cartIcon.onclick = () => cartSidebar.classList.add("active");
+if (closeCart) closeCart.onclick = () => cartSidebar.classList.remove("active");
+if (sizeGuideBtn) {
+    sizeGuideBtn.onclick = (e) => {
+        e.preventDefault();
+        sizeModal.style.display = "flex";
+    };
+}
+if (closeModal) closeModal.onclick = () => sizeModal.style.display = "none";
+window.onclick = (e) => {
+    if (e.target === sizeModal) sizeModal.style.display = "none";
+};
+
+// Año dinámico
+document.getElementById("year").textContent = new Date().getFullYear();
+
+// Scroll top
+const scrollTopBtn = document.getElementById("scrollTop");
+if (scrollTopBtn) {
+    scrollTopBtn.onclick = () => window.scrollTo({ top: 0, behavior: "smooth" });
+    window.addEventListener("scroll", () => {
+        if (window.scrollY > 300) scrollTopBtn.classList.add("show");
+        else scrollTopBtn.classList.remove("show");
+    });
+}
+
+// Hacer funciones globales disponibles
+window.agregarProducto = agregarProducto;
+window.toggleMarca = toggleMarca;
+window.togglePrecio = togglePrecio;
+window.toggleCategoria = toggleCategoria;
+window.toggleEstado = toggleEstado;
+window.limpiarTodosLosFiltros = limpiarTodosLosFiltros;
+window.updateCartQty = updateCartQty;
+window.removeCartItem = removeCartItem;
+
+// Inicializar
+renderizarFiltrosSidebar();
+renderProductos(productosData);
+renderCartSidebar();
+actualizarContadorGlobal();
+</script>
 </body>
 </html>
